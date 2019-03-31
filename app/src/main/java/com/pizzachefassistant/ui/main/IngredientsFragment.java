@@ -1,7 +1,5 @@
 package com.pizzachefassistant.ui.main;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -12,14 +10,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.pizzachefassistant.BR;
 import com.pizzachefassistant.R;
+import com.pizzachefassistant.databinding.IngredientsFragmentBinding;
 
 public class IngredientsFragment extends Fragment {
 
-    private ViewDataBinding binding;
+    private IngredientsFragmentBinding binding;
     private IngredientsViewModel viewModel;
 
     public static IngredientsFragment newInstance() {
@@ -37,7 +34,7 @@ public class IngredientsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.ingredients_fragment, container, false);
-        binding.setVariable(BR.viewModel, viewModel);
+        binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         return binding.getRoot();
     }
