@@ -1,4 +1,4 @@
-package com.pizzachefassistant;
+package com.pizzachefassistant.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.pizzachefassistant.R;
 import com.pizzachefassistant.ui.main.IngredientsFragment;
 import com.pizzachefassistant.ui.main.OrdersFragment;
 import com.pizzachefassistant.ui.main.PizzasFragment;

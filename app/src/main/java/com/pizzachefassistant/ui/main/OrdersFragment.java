@@ -1,5 +1,7 @@
 package com.pizzachefassistant.ui.main;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,13 +10,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.ui.main.OrdersViewModel;
 
 public class OrdersFragment extends Fragment {
 
-    private OrdersViewModel mViewModel;
+    private OrdersViewModel viewModel;
 
     public static OrdersFragment newInstance() {
         return new OrdersFragment();
@@ -30,8 +33,21 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(OrdersViewModel.class);
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProviders.of(this).get(OrdersViewModel.class);
+        setupObservables();
     }
 
+    private void setupObservables(){
+        LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
+
+        viewModel.getOrdersExampleText().observe(lifecycleOwner, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                if(getView() != null) {
+                    TextView exampleTextView = getView().findViewById(R.id.message);
+                    exampleTextView.setText(s);
+                }
+            }
+        });
+    }
 }

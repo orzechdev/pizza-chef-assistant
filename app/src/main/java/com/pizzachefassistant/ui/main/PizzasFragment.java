@@ -1,5 +1,7 @@
 package com.pizzachefassistant.ui.main;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,17 +10,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.pizzachefassistant.R;
 
 public class PizzasFragment extends Fragment {
 
-    private PizzasViewModel mViewModel;
+    private PizzasViewModel viewModel;
 
     public static PizzasFragment newInstance() {
         return new PizzasFragment();
     }
 
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -28,8 +32,21 @@ public class PizzasFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(PizzasViewModel.class);
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProviders.of(this).get(PizzasViewModel.class);
+        setupObservables();
     }
 
+    private void setupObservables(){
+        LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
+
+        viewModel.getPizzasExampleText().observe(lifecycleOwner, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                if(getView() != null) {
+                    TextView exampleTextView = getView().findViewById(R.id.message);
+                    exampleTextView.setText(s);
+                }
+            }
+        });
+    }
 }
