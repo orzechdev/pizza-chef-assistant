@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.pizzachefassistant.App;
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.ui.main.IngredientsFragment;
 import com.pizzachefassistant.ui.main.OrdersFragment;
@@ -61,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    public App getApp() {
+        return ((App) getApplication());
     }
 
 }

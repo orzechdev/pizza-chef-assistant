@@ -13,8 +13,8 @@ import dagger.Provides;
 @Module(includes = ContextModule.class)
 public class DatabaseModule {
 
-    @Singleton
     @Provides
+    @Singleton
     public MainDatabase mainDatabase(Context context){
         return Room.databaseBuilder(context, MainDatabase.class, "database-main")
                 .fallbackToDestructiveMigration()

@@ -22,8 +22,10 @@ public class MainRepository {
     private LiveData<String> pizzasExampleText;
     private LiveData<String> ingredientsExampleText;
 
+    @Inject
     public MainRepository(MainDatabase mainDatabase) {
         this.mainDatabase = mainDatabase;
+        Log.i("repo", "constructor");
     }
 
     public LiveData<String> getOrdersExampleText() {

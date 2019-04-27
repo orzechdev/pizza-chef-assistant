@@ -8,10 +8,11 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module
+@Module(includes = DatabaseModule.class)
 public class RepositoryModule {
-    @Singleton
+
     @Provides
+    @Singleton
     public MainRepository mainRepository(MainDatabase mainDatabase){
         return new MainRepository(mainDatabase);
     }
