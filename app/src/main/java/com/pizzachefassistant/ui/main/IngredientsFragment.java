@@ -2,7 +2,6 @@ package com.pizzachefassistant.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,8 +12,17 @@ import android.view.ViewGroup;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.databinding.IngredientsFragmentBinding;
+import com.pizzachefassistant.dependencies.components.DaggerFragmentComponent;
+import com.pizzachefassistant.dependencies.components.FragmentComponent;
+import com.pizzachefassistant.dependencies.modules.ContextModule;
+import com.pizzachefassistant.ui.utils.ViewModelFactory;
+import com.pizzachefassistant.dependencies.modules.ViewModelModule;
+
+import javax.inject.Inject;
 
 public class IngredientsFragment extends Fragment {
+    @Inject
+    ViewModelFactory viewModelFactory;
 
     private IngredientsFragmentBinding binding;
     private IngredientsViewModel viewModel;
@@ -26,7 +34,14 @@ public class IngredientsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(IngredientsViewModel.class);
+
+        FragmentComponent component = DaggerFragmentComponent.builder()
+                .contextModule(new ContextModule(getActivity()))
+                .viewModelModule(new ViewModelModule())
+                .build();
+        component.inject(this);
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(IngredientsViewModel.class);
     }
 
     @Nullable

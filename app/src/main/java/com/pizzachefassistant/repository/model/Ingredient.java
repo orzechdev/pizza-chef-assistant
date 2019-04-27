@@ -1,4 +1,4 @@
-package com.pizzachefassistant.repository;
+package com.pizzachefassistant.repository.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -6,11 +6,11 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Ingredient {
     @PrimaryKey(autoGenerate = true)
-    public final int ingredientID;
+    public final int id;
     public final String IngredientName;
 
-    public Ingredient(int ingredientID, String ingredientName){
-        this.ingredientID = ingredientID;
+    public Ingredient(int id, String ingredientName){
+        this.id = id;
         this.IngredientName = ingredientName;
 
     }

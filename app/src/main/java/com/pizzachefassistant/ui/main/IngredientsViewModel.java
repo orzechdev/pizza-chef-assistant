@@ -1,8 +1,6 @@
 package com.pizzachefassistant.ui.main;
 
-import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 
 import com.pizzachefassistant.repository.MainRepository;
@@ -12,9 +10,9 @@ public class IngredientsViewModel extends ViewModel {
 
     public LiveData<String> exampleText;
 
-    public IngredientsViewModel() {
+    public IngredientsViewModel(MainRepository mainRepository) {
         super();
-        mainRepository = MainRepository.getInstance();
+        this.mainRepository = mainRepository;
         mapLiveDataFromRepo();
     }
 

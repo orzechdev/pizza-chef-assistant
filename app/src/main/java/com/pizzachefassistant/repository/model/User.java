@@ -1,4 +1,4 @@
-package com.pizzachefassistant.repository;
+package com.pizzachefassistant.repository.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -6,13 +6,13 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class User {
     @PrimaryKey(autoGenerate = true)
-    public final int userID;
+    public final int id;
     public final String login;
     protected final String password;
     public final String email;
 
-    public User(int userID, String login, String password, String email){
-        this.userID = userID;
+    public User(int id, String login, String password, String email){
+        this.id = id;
         this.login = login;
         this.password = password;
         this.email = email;

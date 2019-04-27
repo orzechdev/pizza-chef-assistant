@@ -1,4 +1,4 @@
-package com.pizzachefassistant.repository;
+package com.pizzachefassistant.repository.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
