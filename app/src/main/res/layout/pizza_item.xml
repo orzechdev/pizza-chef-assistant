@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:src="#FFB300"
         android:layout_height="300dp"
-        android:id=""/>
+        android:id="@+id/ingredient_image_view"/>
 
     <TextView
         android:id="@+id/pizza_item_pizza_name"

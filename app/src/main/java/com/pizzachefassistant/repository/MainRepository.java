@@ -76,4 +76,15 @@ public class MainRepository {
             t.start();
         }
     }
+
+    public void addIngredient(final String name) {
+        Log.i("repo", "addIngredient");
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mainDatabase.ingredientDao().insert(new Ingredient(name));
+            }
+        });
+        t.start();
+    }
 }

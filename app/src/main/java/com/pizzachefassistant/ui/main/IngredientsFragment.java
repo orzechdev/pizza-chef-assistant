@@ -1,6 +1,7 @@
 package com.pizzachefassistant.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,17 +15,14 @@ import android.view.ViewGroup;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.databinding.IngredientsFragmentBinding;
+import com.pizzachefassistant.repository.model.Ingredient;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class IngredientsFragment extends Fragment {
 
     private IngredientsFragmentBinding binding;
     private IngredientsViewModel viewModel;
-    private ArrayList<String> ingredientImages = new ArrayList<String>();
-    private ArrayList<String> ingredientStocks = new ArrayList<String>();
-    private ArrayList<String> ingredientCapacities = new ArrayList<String>();
-    private ArrayList<String> ingredientNames = new ArrayList<String>();
 
     public static IngredientsFragment newInstance() {
         return new IngredientsFragment();
@@ -32,7 +30,6 @@ public class IngredientsFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        initRecyclerView();
         super.onCreate(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(IngredientsViewModel.class);
     }
@@ -47,10 +44,11 @@ public class IngredientsFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void initRecyclerView() {
-        RecyclerView recyclerView = findViewById
-        IngredientsRecyclerViewAdapter adapter = new IngredientsRecyclerViewAdapter(ingredientNames, ingredientStocks, ingredientCapacities, ingredientImages, this.getContext());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+    @BindingAdapter("setupRecyclerView")
+    public static void setupRecyclerView(final RecyclerView view, List<Ingredient> data) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        view.setLayoutManager(layoutManager);
+        IngredientsRecyclerViewAdapter adapter = new IngredientsRecyclerViewAdapter(data);
+        view.setAdapter(adapter);
     }
 }

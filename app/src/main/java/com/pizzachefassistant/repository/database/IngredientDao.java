@@ -21,10 +21,10 @@ public interface IngredientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Ingredient> ingredients);
 
-    @Query("SELECT * FROM `Order` WHERE id = :id")
+    @Query("SELECT * FROM `Ingredient` WHERE id = :id")
     LiveData<Ingredient> load(int id);
 
-    @Query("SELECT * FROM `Order`")
+    @Query("SELECT * FROM `Ingredient`")
     LiveData<List<Ingredient>> loadAll();
 
     @Update

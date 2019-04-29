@@ -7,11 +7,9 @@ import android.arch.persistence.room.PrimaryKey;
 public class Ingredient {
     @PrimaryKey(autoGenerate = true)
     public int id;
-    public String IngredientName;
+    public String ingredientName;
 
-    public Ingredient(int id, String ingredientName){
-        this.id = id;
-        this.IngredientName = ingredientName;
-
+    public Ingredient(String ingredientName){
+        this.ingredientName = ingredientName;
     }
 }
