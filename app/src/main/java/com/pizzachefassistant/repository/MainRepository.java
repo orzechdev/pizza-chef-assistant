@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.pizzachefassistant.repository.database.MainDatabase;
 import com.pizzachefassistant.repository.model.Customer;
+import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.repository.model.Pizza;
 
@@ -56,6 +57,10 @@ public class MainRepository {
 
     public LiveData<List<Customer>> getCustomerList() {
         return mainDatabase.customerDao().loadAll();
+    }
+
+    public LiveData<List<Ingredient>> getIngredientList() {
+        return mainDatabase.ingredientDao().loadAll();
     }
 
     public void addPizza(final String name, final String cookingInstruction) {

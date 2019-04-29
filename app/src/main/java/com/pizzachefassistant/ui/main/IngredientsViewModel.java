@@ -6,11 +6,15 @@ import android.arch.lifecycle.LiveData;
 
 import com.pizzachefassistant.App;
 import com.pizzachefassistant.repository.MainRepository;
+import com.pizzachefassistant.repository.model.Ingredient;
+
+import java.util.List;
 
 public class IngredientsViewModel extends AndroidViewModel {
 
     private MainRepository mainRepository;
 
+    public LiveData<List<Ingredient>> ingredients;
     public LiveData<String> exampleText;
 
     public IngredientsViewModel(Application application) {
@@ -21,6 +25,7 @@ public class IngredientsViewModel extends AndroidViewModel {
     }
 
     private void mapLiveDataFromRepo() {
+        ingredients = mainRepository.getIngredientList();
         exampleText = mainRepository.getIngredientsExampleText();
     }
 }

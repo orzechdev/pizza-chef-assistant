@@ -12,12 +12,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pizzachefassistant.R;
+import com.pizzachefassistant.repository.model.Ingredient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class IngredientsRecyclerViewAdapter extends RecyclerView.Adapter<IngredientsRecyclerViewAdapter.Viewholder>{
     private static final String TAG = "IngredientsRecyclerView";
+
+    public List<Ingredient> ingredients;
 
     private ArrayList<String> ingredientNames = new ArrayList<>();
     private ArrayList<String> ingredientStocks = new ArrayList<>();
