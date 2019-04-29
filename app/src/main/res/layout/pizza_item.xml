@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="#FFB300"
+        android:layout_height="300dp"
+        android:id=""/>
+
+    <TextView
+        android:id="@+id/pizza_item_pizza_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pizza Name"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="235dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="Ingredients"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="337dp" />
+
+    <TextView
+        android:id="@+id/pizza_item_ingredient1"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="Cheese"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="372dp" />
+    <ImageView
+        android:id="@+id/pizza_item_ingredient1_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="#FFB300"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="367dp" />
+
+    <TextView
+        android:id="@+id/pizza_item_ingredient2"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="Pepperoni"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="412dp" />
+    <ImageView
+        android:id="@+id/pizza_item_ingredient2_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="#FFB300"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <TextView
+        android:id="@+id/pizza_item_ingredient3"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="Ham"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="452dp" />
+    <ImageView
+        android:id="@+id/pizza_item_ingredient3_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="#FFB300"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="Price"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="497dp" />
+
+    <TextView
+        android:id="@+id/pizza_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="40 zł"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="533dp" />
+
+
+</android.support.constraint.ConstraintLayout>
