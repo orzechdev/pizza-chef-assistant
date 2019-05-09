@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Transaction;
 import android.arch.persistence.room.Update;
 
 import com.pizzachefassistant.repository.model.Ingredient;
@@ -14,19 +15,28 @@ import java.util.List;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
-public interface IngredientDao {
+public abstract class IngredientDao {
     @Insert(onConflict = REPLACE)
-    void insert(Ingredient ingredient);
+    public abstract void insert(Ingredient ingredient);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Ingredient> ingredients);
+    public abstract void insertAll(List<Ingredient> ingredients);
 
     @Query("SELECT * FROM `Ingredient` WHERE id = :id")
-    LiveData<Ingredient> load(int id);
+    public abstract LiveData<Ingredient> load(int id);
 
     @Query("SELECT * FROM `Ingredient`")
-    LiveData<List<Ingredient>> loadAll();
+    public abstract LiveData<List<Ingredient>> loadAll();
 
     @Update
-    void updateIngredients(Ingredient... ingredients);
+    public abstract void updateIngredients(Ingredient... ingredients);
+
+    @Query("DELETE FROM `Ingredient`")
+    public abstract void deleteAll();
+
+    @Transaction
+    public void deleteAndCreate(List<Ingredient> ingredients) {
+        deleteAll();
+        insertAll(ingredients);
+    }
 }

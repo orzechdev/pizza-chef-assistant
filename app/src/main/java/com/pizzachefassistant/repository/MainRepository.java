@@ -70,7 +70,7 @@ public class MainRepository {
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    mainDatabase.pizzaDao().insert(new Pizza(1277, name, cookingInstruction));
+                    mainDatabase.pizzaDao().insert(new Pizza(name, cookingInstruction));
                 }
             });
             t.start();
@@ -83,6 +83,19 @@ public class MainRepository {
             @Override
             public void run() {
                 mainDatabase.ingredientDao().insert(new Ingredient(name));
+            }
+        });
+        t.start();
+    }
+
+    public void deleteAndCreateData(final List<Order> orders, final List<Customer> customers, final List<Pizza> pizzas, final List<Ingredient> ingredients) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mainDatabase.orderDao().deleteAndCreate(orders);
+                mainDatabase.customerDao().deleteAndCreate(customers);
+                mainDatabase.pizzaDao().deleteAndCreate(pizzas);
+                mainDatabase.ingredientDao().deleteAndCreate(ingredients);
             }
         });
         t.start();

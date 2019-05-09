@@ -32,6 +32,10 @@ public class IngredientsViewModel extends AndroidViewModel {
     private void mapLiveDataFromRepo() {
         ingredients = mainRepository.getIngredientList();
         exampleText = mainRepository.getIngredientsExampleText();
+
+        // Test
+//        mainRepository.addIngredient("Cheese");
+//        mainRepository.addIngredient("Tomato");
     }
 
     public void onClickFab(View view) {

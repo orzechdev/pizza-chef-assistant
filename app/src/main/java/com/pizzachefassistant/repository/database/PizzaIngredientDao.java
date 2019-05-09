@@ -6,6 +6,7 @@
 //import android.arch.persistence.room.OnConflictStrategy;
 //import android.arch.persistence.room.Query;
 //import android.arch.persistence.room.Update;
+//import android.arch.persistence.room.Transaction;
 //
 //import com.pizzachefassistant.repository.model.PizzaIngredient;
 //
@@ -14,19 +15,28 @@
 //import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 //
 //@Dao
-//public interface PizzaIngredientDao {
+//public abstract class PizzaIngredientDao {
 //    @Insert(onConflict = REPLACE)
-//    void insert(PizzaIngredient pizzaIngredient);
+//    public abstract void insert(PizzaIngredient pizzaIngredient);
 //
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    void insertAll(List<PizzaIngredient> pizzaIngredients);
+//    public abstract void insertAll(List<PizzaIngredient> pizzaIngredients);
 //
-//    @Query("SELECT * FROM `Order` WHERE id = :id")
-//    LiveData<PizzaIngredient> load(int id);
+//    @Query("SELECT * FROM `PizzaIngredient` WHERE id = :id")
+//    public abstract LiveData<PizzaIngredient> load(int id);
 //
-//    @Query("SELECT * FROM `Order`")
-//    LiveData<List<PizzaIngredient>> loadAll();
+//    @Query("SELECT * FROM `PizzaIngredient`")
+//    public abstract LiveData<List<PizzaIngredient>> loadAll();
 //
 //    @Update
-//    void updatePizzaIngredients(PizzaIngredient... pizzaIngredients);
+//    public abstract void updatePizzaIngredients(PizzaIngredient... pizzaIngredients);
+//
+//    @Query("DELETE FROM `PizzaIngredient`")
+//    public abstract void deleteAll();
+//
+//    @Transaction
+//    public void deleteAndCreate(List<PizzaIngredient> pizzaIngredients) {
+//        deleteAll();
+//        insertAll(pizzaIngredients);
+//    }
 //}
