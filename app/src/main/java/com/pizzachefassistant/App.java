@@ -11,7 +11,9 @@ import com.pizzachefassistant.repository.MainRepository;
 import com.pizzachefassistant.repository.model.Customer;
 import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.repository.model.Order;
+import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
+import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,8 @@ public class App extends Application {
         List<Customer> customers = new ArrayList<>();
         List<Pizza> pizzas = new ArrayList<>();
         List<Ingredient> ingredients = new ArrayList<>();
+        List<PizzaIngredient> pizzaIngredients = new ArrayList<>();
+        List<OrderPizza> orderPizzas = new ArrayList<>();
 
         ingredients.add(new Ingredient(14, "Ham"));
         ingredients.add(new Ingredient(15, "Tomato"));
@@ -60,6 +64,6 @@ public class App extends Application {
          * TODO:...
          */
 
-        mainRepository.deleteAndCreateData(orders, customers, pizzas, ingredients);
+        mainRepository.deleteAndCreateData(orders, customers, pizzas, ingredients, pizzaIngredients, orderPizzas);
     }
 }
