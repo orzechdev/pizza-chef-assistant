@@ -9,48 +9,61 @@
             type="com.pizzachefassistant.repository.model.Ingredient"/>
     </data>
 
-    <RelativeLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:id="@+id/parent_layout">
+    <android.support.constraint.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <android.support.v7.widget.AppCompatImageView
-            android:layout_height="100dp"
-            android:layout_width="100dp"
-            android:src="@mipmap/ic_cheese"
             android:id="@+id/ingredient_image"
-            />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_cheese"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/ingredient_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{obj.ingredientName}"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="150dp"
+            android:text="@{obj.ingredientName}"
             android:textColor="#000"
             android:textSize="20sp"
-            android:layout_centerVertical="true"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/stock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="400dp"
+            android:layout_marginLeft="400dp"
             android:text="100"
             android:textColor="#000"
             android:textSize="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="150dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/capacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="500dp"
+            android:layout_marginLeft="500dp"
             android:text="200"
             android:textColor="#000"
             android:textSize="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 </layout>

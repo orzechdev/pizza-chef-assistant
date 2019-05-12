@@ -3,12 +3,16 @@ package com.pizzachefassistant.ui.main;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
 import com.pizzachefassistant.App;
 import com.pizzachefassistant.repository.MainRepository;
 import com.pizzachefassistant.repository.model.Pizza;
+import com.pizzachefassistant.ui.IngredientEditActivity;
+import com.pizzachefassistant.ui.PizzaAddActivity;
 
 import java.util.List;
 
@@ -31,8 +35,12 @@ public class PizzasViewModel extends AndroidViewModel {
         pizzaList = mainRepository.getPizzaList();
     }
 
-    public void onClickAddItem(View view) {
-        Log.i("vm", "onClickAddItem");
-        mainRepository.addPizza("Pizza Testowa", "Instrukcja testowa");
+    public void onClickFab(View view) {
+        Log.i("vm", "onClickFab");
+
+        Context context = view.getContext();
+        Intent intent = new Intent(context, PizzaAddActivity.class);
+        intent.putExtra("isAdd", true);
+        context.startActivity(intent);
     }
 }
