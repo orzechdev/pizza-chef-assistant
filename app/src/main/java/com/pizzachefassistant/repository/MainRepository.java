@@ -8,7 +8,9 @@ import com.pizzachefassistant.repository.database.MainDatabase;
 import com.pizzachefassistant.repository.model.Customer;
 import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.repository.model.Order;
+import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
+import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.List;
 
@@ -88,7 +90,11 @@ public class MainRepository {
         t.start();
     }
 
-    public void deleteAndCreateData(final List<Order> orders, final List<Customer> customers, final List<Pizza> pizzas, final List<Ingredient> ingredients) {
+    public void deleteAndCreateData(
+            final List<Order> orders, final List<Customer> customers,
+            final List<Pizza> pizzas, final List<Ingredient> ingredients,
+            final List<PizzaIngredient> pizzaIngredients, final List<OrderPizza> orderPizzas
+    ) {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -96,6 +102,8 @@ public class MainRepository {
                 mainDatabase.customerDao().deleteAndCreate(customers);
                 mainDatabase.pizzaDao().deleteAndCreate(pizzas);
                 mainDatabase.ingredientDao().deleteAndCreate(ingredients);
+                mainDatabase.pizzaIngredientDao().deleteAndCreate(pizzaIngredients);
+                mainDatabase.orderPizzaDao().deleteAndCreate(orderPizzas);
             }
         });
         t.start();

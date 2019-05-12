@@ -4,13 +4,17 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 import java.sql.Time;
 import java.time.LocalDateTime;
 
-@Entity(foreignKeys = @ForeignKey(entity = Customer.class, parentColumns = "id", childColumns = "userId"))
+@Entity(
+        foreignKeys = @ForeignKey(entity = Customer.class, parentColumns = "id", childColumns = "userId"),
+        indices = {@Index("userId")}
+)
 public class Order {
     @PrimaryKey(autoGenerate = true)
     public int id;
