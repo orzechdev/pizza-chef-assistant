@@ -66,12 +66,27 @@ public class App extends Application {
         ingredients.add(new Ingredient(18, "Pepper"));
         ingredients.add(new Ingredient(18, "Poultry"));
         ingredients.add(new Ingredient(19, "Pepper"));
+        ingredients.add(new Ingredient(20, "Onion"));
+        ingredients.add(new Ingredient(21, "Pepper"));
+        ingredients.add(new Ingredient(22, "Poultry"));
+        ingredients.add(new Ingredient(23, "Pepper"));
         pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(22, "Quattro Formagi", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(23, "Frutti di Mare", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(23, "Napoli", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(24, "Carbonara", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(25, "Margherita", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(26, "Marinara", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(27, "Quattro Formagi", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(28, "Frutti di Mare", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(29, "Napoli", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(30, "Margherita", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(31, "Marinara", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(32, "Quattro Formagi", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(33, "Frutti di Mare", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(34, "Napoli", "DO something, then something, and once again something..."));
+
         /*
          * TODO:...
          */
