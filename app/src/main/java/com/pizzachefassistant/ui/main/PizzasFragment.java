@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class PizzasFragment extends Fragment {
 
     @BindingAdapter("setupRecyclerView")
     public static void setupRecyclerView(final RecyclerView view, List<Pizza> data) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, 1);
         view.setLayoutManager(layoutManager);
         PizzasRecyclerViewAdapter adapter = new PizzasRecyclerViewAdapter(data);
         view.setAdapter(adapter);
