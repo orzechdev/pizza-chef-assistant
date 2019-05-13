@@ -10,13 +10,17 @@ import android.view.View;
 
 import com.pizzachefassistant.App;
 import com.pizzachefassistant.repository.MainRepository;
+import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.ui.OrderAddActivity;
+
+import java.util.List;
 
 public class OrdersViewModel extends AndroidViewModel {
 
     private MainRepository mainRepository;
 
     public LiveData<String> exampleText;
+    public LiveData<List<Order>> orders;
 
     public OrdersViewModel(Application application) {
         super(application);
@@ -27,6 +31,7 @@ public class OrdersViewModel extends AndroidViewModel {
 
     private void mapLiveDataFromRepo() {
         exampleText = mainRepository.getOrdersExampleText();
+        orders = mainRepository.getOrderList();
     }
 
     public void onClickFab(View view) {

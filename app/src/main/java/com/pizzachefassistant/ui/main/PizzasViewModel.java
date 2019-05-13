@@ -21,7 +21,7 @@ public class PizzasViewModel extends AndroidViewModel {
     private MainRepository mainRepository;
 
     public LiveData<String> exampleText;
-    public LiveData<List<Pizza>> pizzaList;
+    public LiveData<List<Pizza>> pizzas;
 
     public PizzasViewModel(Application application) {
         super(application);
@@ -32,7 +32,7 @@ public class PizzasViewModel extends AndroidViewModel {
 
     private void mapLiveDataFromRepo() {
         exampleText = mainRepository.getPizzasExampleText();
-        pizzaList = mainRepository.getPizzaList();
+        pizzas = mainRepository.getPizzaList();
     }
 
     public void onClickFab(View view) {
