@@ -56,10 +56,22 @@ public class App extends Application {
         List<PizzaIngredient> pizzaIngredients = new ArrayList<>();
         List<OrderPizza> orderPizzas = new ArrayList<>();
 
+
+        ingredients.add(new Ingredient(12, "Yeast"));
+        ingredients.add(new Ingredient(13, "Egg"));
         ingredients.add(new Ingredient(14, "Ham"));
         ingredients.add(new Ingredient(15, "Tomato"));
         ingredients.add(new Ingredient(16, "Cheese"));
-        pizzas.add(new Pizza(20, "Margerita", "DO something, then something, and once again something..."));
+        ingredients.add(new Ingredient(17, "Onion"));
+        ingredients.add(new Ingredient(18, "Pepper"));
+        ingredients.add(new Ingredient(18, "Poultry"));
+        ingredients.add(new Ingredient(19, "Pepper"));
+        pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(22, "Quattro Formagi", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(23, "Frutti di Mare", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(23, "Napoli", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(24, "Carbonara", "DO something, then something, and once again something..."));
         /*
          * TODO:...
          */
