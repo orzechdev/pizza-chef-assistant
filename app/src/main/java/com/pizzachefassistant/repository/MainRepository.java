@@ -2,8 +2,11 @@ package com.pizzachefassistant.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import com.pizzachefassistant.R;
 import com.pizzachefassistant.repository.database.MainDatabase;
 import com.pizzachefassistant.repository.model.Customer;
 import com.pizzachefassistant.repository.model.Ingredient;
@@ -12,7 +15,10 @@ import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -88,6 +94,19 @@ public class MainRepository {
             }
         });
         t.start();
+    }
+
+    public Map<String, Drawable> getIngredientsIcons() {
+        Resources resources = Resources.getSystem();
+
+        Map<String, Drawable> iconsList = new HashMap<>();
+        iconsList.put("Cheese", resources.getDrawable(R.mipmap.ic_cheese));
+        iconsList.put("Ham", resources.getDrawable(R.mipmap.ic_ham));
+        /*
+         * TODO:...
+         */
+
+        return iconsList;
     }
 
     public void deleteAndCreateData(

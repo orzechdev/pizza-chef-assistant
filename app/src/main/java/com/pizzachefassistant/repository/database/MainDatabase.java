@@ -12,7 +12,7 @@ import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
 
-@Database(entities = {Pizza.class, Order.class, Customer.class, Ingredient.class, PizzaIngredient.class, OrderPizza.class}, version = 5)
+@Database(entities = {Pizza.class, Order.class, Customer.class, Ingredient.class, PizzaIngredient.class, OrderPizza.class}, version = 7)
 @TypeConverters({DateConverter.class})
 public abstract class MainDatabase extends RoomDatabase {
     public abstract PizzaDao pizzaDao();

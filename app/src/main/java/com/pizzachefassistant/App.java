@@ -72,9 +72,8 @@ public class App extends Application {
         ingredients.add(new Ingredient(23, "Pepper"));
         pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
-        pizzas.add(new Pizza(22, "Quattro Formagi", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie hr u brie bvi vri bri vbreibvri  vbifewf r efef", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(23, "Frutti di Mare", "DO something, then something, and once again something..."));
-        pizzas.add(new Pizza(23, "Napoli", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(24, "Carbonara", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(25, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(26, "Marinara", "DO something, then something, and once again something..."));
@@ -86,7 +85,6 @@ public class App extends Application {
         pizzas.add(new Pizza(32, "Quattro Formagi", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(33, "Frutti di Mare", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(34, "Napoli", "DO something, then something, and once again something..."));
-
         /*
          * TODO:...
          */
