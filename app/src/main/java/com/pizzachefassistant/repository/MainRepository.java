@@ -14,6 +14,7 @@ import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
+import com.pizzachefassistant.repository.model.Warehouse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,7 +120,8 @@ public class MainRepository {
     public void deleteAndCreateData(
             final List<Order> orders, final List<Customer> customers,
             final List<Pizza> pizzas, final List<Ingredient> ingredients,
-            final List<PizzaIngredient> pizzaIngredients, final List<OrderPizza> orderPizzas
+            final List<PizzaIngredient> pizzaIngredients, List<Warehouse> warehouses,
+            final List<OrderPizza> orderPizzas
     ) {
         Thread t = new Thread(new Runnable() {
             @Override
@@ -129,6 +131,7 @@ public class MainRepository {
                 mainDatabase.pizzaDao().deleteAndCreate(pizzas);
                 mainDatabase.ingredientDao().deleteAndCreate(ingredients);
                 mainDatabase.pizzaIngredientDao().deleteAndCreate(pizzaIngredients);
+                mainDatabase.warehouseDao().deleteAndCreate(warehouses);
                 mainDatabase.orderPizzaDao().deleteAndCreate(orderPizzas);
             }
         });
