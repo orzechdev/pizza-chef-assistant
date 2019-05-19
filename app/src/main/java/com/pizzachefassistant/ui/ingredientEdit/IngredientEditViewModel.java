@@ -75,22 +75,39 @@ public class IngredientEditViewModel extends AndroidViewModel {
         });
     }
 
-    private void addIngredient(String name, String picRef) {
-        mainRepository.addIngredient(name, picRef);
+    private void saveIngredient(Ingredient ingredient, int addedAmount) {
+        ingredient.amount = ingredient.amount + addedAmount;
 
+        mainRepository.saveIngredient(ingredient);
     }
 
     public void onClickSave(View view) {
         Log.i(IngredientEditViewModel.class.getSimpleName(), "onClickSave");
-//        Log.i(IngredientEditViewModel.class.getSimpleName(), selectedIngredientTypePosition.getValue() == null ? "null" : Integer.toString(selectedIngredientTypePosition.getValue()));
+
+        List<Ingredient> ingredientList = ingredients.getValue();
+        if (ingredientList != null) {
+            Ingredient ingredient = ingredients.getValue().get(ingredientObservable.selectedTypePosition);
+
+            int addedAmount = Integer.valueOf(ingredientObservable.amount);
+            Log.i(IngredientEditViewModel.class.getSimpleName(), "onClickSave" + ingredientObservable.amount);
+
+            saveIngredient(ingredient, addedAmount);
+
+            Context context = view.getContext();
+            closeActivity(context);
+        }
     }
 
     public void onClickCancel(View view) {
         Log.i(IngredientEditViewModel.class.getSimpleName(), "onClickCancel");
 
         Context context = view.getContext();
+        closeActivity(context);
+    }
+
+    private void closeActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("addIngredientCancel", true);
+        intent.putExtra("addIngredientClose", true);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
@@ -105,6 +122,18 @@ public class IngredientEditViewModel extends AndroidViewModel {
         public String[] types = null;
 
         public String type = null;
+
+        @Bindable
+        public String getAmount() {
+            return amount;
+        }
+
+        public void setAmount(String amount) {
+            this.amount = amount;
+            notifyPropertyChanged(BR.amount);
+        }
+
+        public String amount = "";
 
         @Bindable
         public String getType() {
@@ -126,7 +155,7 @@ public class IngredientEditViewModel extends AndroidViewModel {
             notifyPropertyChanged(BR.type);
         }
 
-        Integer selectedTypePosition = 0;
+        public Integer selectedTypePosition = 0;
 
         @Bindable
         public Integer getSelectedTypePosition() {

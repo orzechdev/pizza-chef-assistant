@@ -14,9 +14,7 @@ import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
-import com.pizzachefassistant.repository.model.Warehouse;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,12 +84,27 @@ public class MainRepository {
         }
     }
 
-    public void addIngredient(final String name, final String picRef) {
+    public LiveData<Ingredient> getIngredient(final int id) {
+        return mainDatabase.ingredientDao().load(id);
+    }
+
+    public void saveIngredient(final Ingredient ingredient) {
+        Log.i("repo", "saveIngredient");
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mainDatabase.ingredientDao().insert(ingredient);
+            }
+        });
+        t.start();
+    }
+
+    public void addIngredient(final String name, final String picRef, final int amount, final int capacity) {
         Log.i("repo", "addIngredient");
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                mainDatabase.ingredientDao().insert(new Ingredient(name, picRef));
+                mainDatabase.ingredientDao().insert(new Ingredient(name, picRef, amount, capacity));
             }
         });
         t.start();
@@ -120,8 +133,7 @@ public class MainRepository {
     public void deleteAndCreateData(
             final List<Order> orders, final List<Customer> customers,
             final List<Pizza> pizzas, final List<Ingredient> ingredients,
-            final List<PizzaIngredient> pizzaIngredients, List<Warehouse> warehouses,
-            final List<OrderPizza> orderPizzas
+            final List<PizzaIngredient> pizzaIngredients, final List<OrderPizza> orderPizzas
     ) {
         Thread t = new Thread(new Runnable() {
             @Override
@@ -131,7 +143,6 @@ public class MainRepository {
                 mainDatabase.pizzaDao().deleteAndCreate(pizzas);
                 mainDatabase.ingredientDao().deleteAndCreate(ingredients);
                 mainDatabase.pizzaIngredientDao().deleteAndCreate(pizzaIngredients);
-                mainDatabase.warehouseDao().deleteAndCreate(warehouses);
                 mainDatabase.orderPizzaDao().deleteAndCreate(orderPizzas);
             }
         });

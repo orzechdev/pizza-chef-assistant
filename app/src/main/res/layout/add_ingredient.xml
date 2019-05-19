@@ -49,7 +49,7 @@
             android:id="@+id/add_ingredient_spinner"
             android:layout_width="390dp"
             android:layout_height="40dp"
-            android:entries="@{observable.types}"
+            app:entries="@{observable.types}"
             android:selectedItemPosition="@={observable.selectedTypePosition}"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +82,8 @@
                 android:id="@+id/add_ingredient_inputamount"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:text="@={observable.amount}"
+                android:inputType="numberDecimal"
                 android:hint="" />
         </android.support.design.widget.TextInputLayout>
 

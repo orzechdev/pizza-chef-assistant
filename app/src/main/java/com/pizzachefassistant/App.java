@@ -14,7 +14,6 @@ import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
-import com.pizzachefassistant.repository.model.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,23 +54,22 @@ public class App extends Application {
         List<Pizza> pizzas = new ArrayList<>();
         List<Ingredient> ingredients = new ArrayList<>();
         List<PizzaIngredient> pizzaIngredients = new ArrayList<>();
-        List<Warehouse> warehouses = new ArrayList<>();
         List<OrderPizza> orderPizzas = new ArrayList<>();
 
 
-        ingredients.add(new Ingredient(12, "Yeast", "yeastRef"));
-        ingredients.add(new Ingredient(13, "Egg", "eggRef"));
-        ingredients.add(new Ingredient(14, "Ham", "hamRef"));
-        ingredients.add(new Ingredient(15, "Tomato", "tomatoRef"));
-        ingredients.add(new Ingredient(16, "Cheese", "cheeseRef"));
-        ingredients.add(new Ingredient(17, "Onion", "onionRef"));
-        ingredients.add(new Ingredient(18, "Pepper", "pepperRef"));
-        ingredients.add(new Ingredient(18, "Poultry", "poultryRef"));
-        ingredients.add(new Ingredient(19, "Pepper", "pepperRef"));
-        ingredients.add(new Ingredient(20, "Onion", "onionRef"));
-        ingredients.add(new Ingredient(21, "Pepper", "pepperRef"));
-        ingredients.add(new Ingredient(22, "Poultry", "poultryRef"));
-        ingredients.add(new Ingredient(23, "Pepper", "pepperRef"));
+        ingredients.add(new Ingredient(12, "Yeast", "yeastRef", 100, 200));
+        ingredients.add(new Ingredient(13, "Egg", "eggRef", 100, 200));
+        ingredients.add(new Ingredient(14, "Ham", "hamRef", 100, 200));
+        ingredients.add(new Ingredient(15, "Tomato", "tomatoRef", 100, 200));
+        ingredients.add(new Ingredient(16, "Cheese", "cheeseRef", 100, 200));
+        ingredients.add(new Ingredient(17, "Onion", "onionRef", 100, 200));
+        ingredients.add(new Ingredient(18, "Pepper", "pepperRef", 100, 200));
+        ingredients.add(new Ingredient(18, "Poultry", "poultryRef", 100, 200));
+        ingredients.add(new Ingredient(19, "Pepper", "pepperRef", 100, 200));
+        ingredients.add(new Ingredient(20, "Onion", "onionRef", 100, 200));
+        ingredients.add(new Ingredient(21, "Pepper", "pepperRef", 100, 200));
+        ingredients.add(new Ingredient(22, "Poultry", "poultryRef", 100, 200));
+        ingredients.add(new Ingredient(23, "Pepper", "pepperRef", 100, 200));
         pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie", "DO something, then something, and once again something..."));
@@ -91,6 +89,6 @@ public class App extends Application {
          * TODO:...
          */
 
-        mainRepository.deleteAndCreateData(orders, customers, pizzas, ingredients, pizzaIngredients, warehouses, orderPizzas);
+        mainRepository.deleteAndCreateData(orders, customers, pizzas, ingredients, pizzaIngredients, orderPizzas);
     }
 }

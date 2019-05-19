@@ -37,4 +37,12 @@ public class IngredientEditActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    @BindingAdapter("entries")
+    public static void setEntries(Spinner spinner, String[] spinnerItems) {
+        if (spinnerItems != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, spinnerItems);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+        }
+    }
 }
