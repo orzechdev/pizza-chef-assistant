@@ -28,7 +28,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="248dp"
             android:layout_marginBottom="32dp"
-            android:text="Pizza Name"
+            android:text="@{viewModel.pizza.pizzaName}"
             android:textColor="@android:color/white"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/ingredient_image_view"
