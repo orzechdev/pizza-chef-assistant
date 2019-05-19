@@ -1,12 +1,8 @@
-package com.pizzachefassistant.ui.ingredientEdit;
+package com.pizzachefassistant.ui.pizzaAdd;
 
 import android.app.Application;
-import android.arch.core.util.Function;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.Transformations;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
@@ -17,41 +13,35 @@ import android.databinding.InverseBindingListener;
 import android.databinding.InverseBindingMethod;
 import android.databinding.InverseBindingMethods;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.pizzachefassistant.App;
 import com.pizzachefassistant.BR;
 import com.pizzachefassistant.repository.MainRepository;
 import com.pizzachefassistant.repository.model.Ingredient;
-import com.pizzachefassistant.ui.IngredientEditActivity;
 import com.pizzachefassistant.ui.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 
-public class IngredientEditViewModel extends AndroidViewModel {
+public class PizzaAddViewModel extends AndroidViewModel {
 
-    public IngredientObservable ingredientObservable;
+    public PizzaObservable pizzaObservable;
 
     private MainRepository mainRepository;
 
     public LiveData<List<Ingredient>> ingredients;
     public String[] ingredientsArray;
 
-    public IngredientEditViewModel(@NonNull Application application) {
+    public PizzaAddViewModel(@NonNull Application application) {
         super(application);
         mainRepository = ((App)application).getComponent().getRepository();
 
-        ingredientObservable = new IngredientObservable();
+        pizzaObservable = new PizzaObservable();
 
         mapLiveDataFromRepo();
     }
@@ -67,36 +57,36 @@ public class IngredientEditViewModel extends AndroidViewModel {
 //                ingredientsArray.addAll(ingredientsStrings);
                 ingredientsArray = ingredientsStrings;
 
-                ingredientObservable.setTypes(ingredientsArray);
+                pizzaObservable.setTypes(ingredientsArray);
             }
         });
     }
 
-    private void saveIngredient(Ingredient ingredient, int addedAmount) {
+    private void addPizza(Ingredient ingredient, int addedAmount) {
         ingredient.amount = ingredient.amount + addedAmount;
 
-        mainRepository.saveIngredient(ingredient);
+//        mainRepository.saveIngredient(ingredient);
     }
 
     public void onClickSave(View view) {
-        Log.i(IngredientEditViewModel.class.getSimpleName(), "onClickSave");
+        Log.i(PizzaAddViewModel.class.getSimpleName(), "onClickSave");
 
-        List<Ingredient> ingredientList = ingredients.getValue();
-        if (ingredientList != null) {
-            Ingredient ingredient = ingredients.getValue().get(ingredientObservable.selectedTypePosition);
-
-            int addedAmount = Integer.valueOf(ingredientObservable.amount);
-            Log.i(IngredientEditViewModel.class.getSimpleName(), "onClickSave" + ingredientObservable.amount);
-
-            saveIngredient(ingredient, addedAmount);
-
-            Context context = view.getContext();
-            closeActivity(context);
-        }
+//        List<Ingredient> ingredientList = ingredients.getValue();
+//        if (ingredientList != null) {
+//            Ingredient pizza = ingredients.getValue().get(pizzaObservable.selectedTypePosition);
+//
+//            String pizzaName = pizzaObservable.pizzaName;
+//            Log.i(PizzaAddViewModel.class.getSimpleName(), "onClickSave" + pizzaObservable.pizzaName);
+//
+//            addPizza(pizza, pizzaName);
+//
+//            Context context = view.getContext();
+//            closeActivity(context);
+//        }
     }
 
     public void onClickCancel(View view) {
-        Log.i(IngredientEditViewModel.class.getSimpleName(), "onClickCancel");
+        Log.i(PizzaAddViewModel.class.getSimpleName(), "onClickCancel");
 
         Context context = view.getContext();
         closeActivity(context);
@@ -114,23 +104,23 @@ public class IngredientEditViewModel extends AndroidViewModel {
     @InverseBindingMethods({
             @InverseBindingMethod(type = AppCompatSpinner.class, attribute = "android:selectedItemPosition"),
     })
-    public class IngredientObservable extends BaseObservable {
+    public class PizzaObservable extends BaseObservable {
 
         public String[] types = null;
 
         public String type = null;
 
+        public String pizzaName = "";
+
         @Bindable
-        public String getAmount() {
-            return amount;
+        public String getPizzaName() {
+            return pizzaName;
         }
 
-        public void setAmount(String amount) {
-            this.amount = amount;
-            notifyPropertyChanged(BR.amount);
+        public void setPizzaName(String pizzaName) {
+            this.pizzaName = pizzaName;
+            notifyPropertyChanged(BR.pizzaName);
         }
-
-        public String amount = "";
 
         @Bindable
         public String getType() {

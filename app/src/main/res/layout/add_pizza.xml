@@ -1,113 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.pizzachefassistant.ui.pizzaAdd.PizzaAddViewModel"/>
+        <variable
+            name="observable"
+            type="com.pizzachefassistant.ui.pizzaAdd.PizzaAddViewModel.PizzaObservable"/>
+    </data>
 
-        android:text="Pizza Name"
-        android:textColor="#A0A0A0"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout2" />
-
-    <Button
-        android:id="@+id/add_ingredient_cancel_button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="64dp"
-        android:background="@android:color/white"
-        android:text="Add"
-        android:textColor="#FFB300"
-        app:layout_constraintStart_toEndOf="@+id/add_ingredient_add_button2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="Ingredient"
-        android:textColor="#A0A0A0"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_ingredient_spinner2"
-        app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner2" />
-
-    <Spinner
-        android:id="@+id/add_ingredient_spinner2"
-        android:layout_width="400dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-
-        android:text="Add Pizza"
-        android:textColor="#000"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/add_ingredient_add_button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="64dp"
-        android:background="@android:color/white"
-        android:text="Cancel"
-        android:textColor="#a0a0a0"
-        app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <android.support.constraint.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="268dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_ingredient_spinner2"
-        tools:layout_editor_absoluteX="8dp" />
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@null"
-        app:layout_constraintStart_toEndOf="@+id/add_ingredient_spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:srcCompat="@mipmap/ic_add"
-        tools:srcCompat="@mipmap/ic_add" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        android:layout_width="400dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7">
+            android:text="Pizza Name"
+            android:textColor="#A0A0A0"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout2" />
 
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/add_ingredient_cancel_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="64dp"
+            android:background="@android:color/white"
+            android:text="Add"
+            android:textColor="#FFB300"
+            app:layout_constraintStart_toEndOf="@+id/add_ingredient_add_button2"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Ingredient"
+            android:textColor="#A0A0A0"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/add_ingredient_spinner2"
+            app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner2" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/add_ingredient_spinner2"
+            android:layout_width="400dp"
             android:layout_height="40dp"
-            android:hint="Pepperoni" />
-    </android.support.design.widget.TextInputLayout>
-</android.support.constraint.ConstraintLayout>
+            android:layout_marginTop="70dp"
+            app:entries="@{observable.types}"
+            android:selectedItemPosition="@={observable.selectedTypePosition}"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+
+            android:text="Add Pizza"
+            android:textColor="#000"
+            android:textSize="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.469"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/add_ingredient_add_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="64dp"
+            android:background="@android:color/white"
+            android:text="Cancel"
+            android:textColor="#a0a0a0"
+            app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner2"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="268dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_ingredient_spinner2"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@null"
+            app:layout_constraintStart_toEndOf="@+id/add_ingredient_spinner2"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:srcCompat="@mipmap/ic_add"
+            tools:srcCompat="@mipmap/ic_add" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            android:layout_width="400dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="@={observable.pizzaName}"
+                android:hint="Pepperoni" />
+        </android.support.design.widget.TextInputLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
