@@ -145,12 +145,12 @@ public class MainRepository {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+                mainDatabase.orderPizzaDao().deleteAndCreate(orderPizzas);
                 mainDatabase.orderDao().deleteAndCreate(orders);
                 mainDatabase.customerDao().deleteAndCreate(customers);
+                mainDatabase.pizzaIngredientDao().deleteAndCreate(pizzaIngredients);
                 mainDatabase.pizzaDao().deleteAndCreate(pizzas);
                 mainDatabase.ingredientDao().deleteAndCreate(ingredients);
-                mainDatabase.pizzaIngredientDao().deleteAndCreate(pizzaIngredients);
-                mainDatabase.orderPizzaDao().deleteAndCreate(orderPizzas);
             }
         });
         t.start();
