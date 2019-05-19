@@ -5,8 +5,10 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.pizzachefassistant.R;
+import com.pizzachefassistant.constants.IntentsConstants;
 import com.pizzachefassistant.databinding.PizzaItemBinding;
 import com.pizzachefassistant.ui.pizza.PizzaViewModel;
 
@@ -21,6 +23,10 @@ public class PizzaActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(PizzaViewModel.class);
 
+        int requiredPizzaId = getIntent().getIntExtra(IntentsConstants.PIZZA_ID, 0);
+        Log.i("PizzaActivity", "" + requiredPizzaId);
+        viewModel.setRequiredPizzaId(requiredPizzaId);
+
         binding = DataBindingUtil.setContentView(this,R.layout.pizza_item);
         binding.setViewModel(viewModel);
 
@@ -28,5 +34,7 @@ public class PizzaActivity extends AppCompatActivity {
 
         if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
+
+        binding.setLifecycleOwner(this);
     }
 }

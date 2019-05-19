@@ -70,6 +70,10 @@ public class MainRepository {
         return mainDatabase.ingredientDao().loadAll();
     }
 
+    public LiveData<Pizza> getPizza(int id) {
+        return mainDatabase.pizzaDao().load(id);
+    }
+
     public void addPizza(final String name, final String cookingInstruction, final Ingredient ingredient, final int neededAmount) {
         Log.i("repo", "addPizza");
         List<Pizza> pizzaList = mainDatabase.pizzaDao().loadAll().getValue();
