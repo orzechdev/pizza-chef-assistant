@@ -3,4 +3,5 @@
     <string name="title_orders">Orders</string>
     <string name="title_pizza_list">Pizza list</string>
     <string name="title_ingredients">Ingredients</string>
+    <string name="title_add_to_stock">Add to stock</string>
 </resources>

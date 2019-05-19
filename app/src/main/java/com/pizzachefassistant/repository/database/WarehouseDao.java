@@ -22,8 +22,8 @@ public abstract class WarehouseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public abstract void insertAll(List<Warehouse> warehouses);
 
-    @Query("SELECT * FROM `Warehouse` WHERE warehouseUserID = :warehouseUserID AND warehouseIngredientID = :warehouseIngredientID")
-    public abstract LiveData<Warehouse> load(int warehouseUserID, int warehouseIngredientID);
+    @Query("SELECT * FROM `Warehouse` WHERE warehouseIngredientID = :warehouseIngredientID")
+    public abstract LiveData<Warehouse> load(int warehouseIngredientID);
 
     @Query("SELECT * FROM `Warehouse`")
     public abstract LiveData<List<Warehouse>> loadAll();

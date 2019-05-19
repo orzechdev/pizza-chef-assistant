@@ -11,8 +11,9 @@ import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
+import com.pizzachefassistant.repository.model.Warehouse;
 
-@Database(entities = {Pizza.class, Order.class, Customer.class, Ingredient.class, PizzaIngredient.class, OrderPizza.class}, version = 7)
+@Database(entities = {Pizza.class, Order.class, Customer.class, Ingredient.class, PizzaIngredient.class, Warehouse.class, OrderPizza.class}, version = 9)
 @TypeConverters({DateConverter.class})
 public abstract class MainDatabase extends RoomDatabase {
     public abstract PizzaDao pizzaDao();
@@ -20,5 +21,6 @@ public abstract class MainDatabase extends RoomDatabase {
     public abstract CustomerDao customerDao();
     public abstract IngredientDao ingredientDao();
     public abstract PizzaIngredientDao pizzaIngredientDao();
+    public abstract WarehouseDao warehouseDao();
     public abstract OrderPizzaDao orderPizzaDao();
 }

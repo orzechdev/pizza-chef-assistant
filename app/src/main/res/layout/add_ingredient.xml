@@ -6,6 +6,9 @@
         <variable
             name="viewModel"
             type="com.pizzachefassistant.ui.ingredientEdit.IngredientEditViewModel"/>
+        <variable
+            name="observable"
+            type="com.pizzachefassistant.ui.ingredientEdit.IngredientEditViewModel.IngredientObservable"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -42,10 +45,13 @@
             app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/add_ingredient_spinner"
             android:layout_width="390dp"
             android:layout_height="40dp"
+            android:entries="@{observable.types}"
+            android:selectedItemPosition="@={observable.selectedTypePosition}"
+            android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
