@@ -102,9 +102,16 @@ public class MainRepository {
         Map<String, Drawable> iconsList = new HashMap<>();
         iconsList.put("Cheese", resources.getDrawable(R.mipmap.ic_cheese));
         iconsList.put("Ham", resources.getDrawable(R.mipmap.ic_ham));
-        /*
-         * TODO:...
-         */
+        iconsList.put("Egg", resources.getDrawable(R.mipmap.ic_egg));
+        iconsList.put("Flour", resources.getDrawable(R.mipmap.ic_flour));
+        iconsList.put("Onion", resources.getDrawable(R.mipmap.ic_onion));
+        iconsList.put("Pepper", resources.getDrawable(R.mipmap.ic_pepper));
+        iconsList.put("Poultry", resources.getDrawable(R.mipmap.ic_poultry));
+        iconsList.put("Spices", resources.getDrawable(R.mipmap.ic_spices));
+        iconsList.put("Tomato", resources.getDrawable(R.mipmap.ic_tomato));
+        iconsList.put("Yeast", resources.getDrawable(R.mipmap.ic_yeast));
+        iconsList.put("Add", resources.getDrawable(R.mipmap.ic_add));
+        iconsList.put("Launcher", resources.getDrawable(R.mipmap.ic_launcher));
 
         return iconsList;
     }

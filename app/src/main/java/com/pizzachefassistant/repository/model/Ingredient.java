@@ -9,13 +9,16 @@ public class Ingredient {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public String ingredientName;
+    public String picRef;
 
     @Ignore
-    public Ingredient(String ingredientName){
+    public Ingredient(String ingredientName, String picRef){
         this.ingredientName = ingredientName;
+        this.picRef = picRef;
     }
-    public Ingredient(int id, String ingredientName){
+    public Ingredient(int id, String ingredientName, String picRef){
         this.id = id;
         this.ingredientName = ingredientName;
+        this.picRef = picRef;
     }
 }

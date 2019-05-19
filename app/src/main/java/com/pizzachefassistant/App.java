@@ -57,22 +57,22 @@ public class App extends Application {
         List<OrderPizza> orderPizzas = new ArrayList<>();
 
 
-        ingredients.add(new Ingredient(12, "Yeast"));
-        ingredients.add(new Ingredient(13, "Egg"));
-        ingredients.add(new Ingredient(14, "Ham"));
-        ingredients.add(new Ingredient(15, "Tomato"));
-        ingredients.add(new Ingredient(16, "Cheese"));
-        ingredients.add(new Ingredient(17, "Onion"));
-        ingredients.add(new Ingredient(18, "Pepper"));
-        ingredients.add(new Ingredient(18, "Poultry"));
-        ingredients.add(new Ingredient(19, "Pepper"));
-        ingredients.add(new Ingredient(20, "Onion"));
-        ingredients.add(new Ingredient(21, "Pepper"));
-        ingredients.add(new Ingredient(22, "Poultry"));
-        ingredients.add(new Ingredient(23, "Pepper"));
+        ingredients.add(new Ingredient(12, "Yeast", "yeastRef"));
+        ingredients.add(new Ingredient(13, "Egg", "eggRef"));
+        ingredients.add(new Ingredient(14, "Ham", "hamRef"));
+        ingredients.add(new Ingredient(15, "Tomato", "tomatoRef"));
+        ingredients.add(new Ingredient(16, "Cheese", "cheeseRef"));
+        ingredients.add(new Ingredient(17, "Onion", "onionRef"));
+        ingredients.add(new Ingredient(18, "Pepper", "pepperRef"));
+        ingredients.add(new Ingredient(18, "Poultry", "poultryRef"));
+        ingredients.add(new Ingredient(19, "Pepper", "pepperRef"));
+        ingredients.add(new Ingredient(20, "Onion", "onionRef"));
+        ingredients.add(new Ingredient(21, "Pepper", "pepperRef"));
+        ingredients.add(new Ingredient(22, "Poultry", "poultryRef"));
+        ingredients.add(new Ingredient(23, "Pepper", "pepperRef"));
         pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
-        pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie hr u brie bvi vri bri vbreibvri  vbifewf r efef", "DO something, then something, and once again something..."));
+        pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(23, "Frutti di Mare", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(24, "Carbonara", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(25, "Margherita", "DO something, then something, and once again something..."));
