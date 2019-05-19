@@ -18,8 +18,9 @@ public class IngredientEditViewModel extends AndroidViewModel {
         mainRepository = ((App)application).getComponent().getRepository();
     }
 
-    private void addIngredient(String name) {
-        mainRepository.addIngredient(name);
+    private void addIngredient(String name, String picRef) {
+        mainRepository.addIngredient(name, picRef);
+
     }
 
     public void onClickSave(View view) {

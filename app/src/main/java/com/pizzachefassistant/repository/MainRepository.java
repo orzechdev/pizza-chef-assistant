@@ -85,12 +85,12 @@ public class MainRepository {
         }
     }
 
-    public void addIngredient(final String name) {
+    public void addIngredient(final String name, final String picRef) {
         Log.i("repo", "addIngredient");
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                mainDatabase.ingredientDao().insert(new Ingredient(name));
+                mainDatabase.ingredientDao().insert(new Ingredient(name, picRef));
             }
         });
         t.start();
