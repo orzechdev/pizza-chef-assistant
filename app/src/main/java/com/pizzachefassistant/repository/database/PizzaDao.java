@@ -17,7 +17,7 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public abstract class PizzaDao {
     @Insert(onConflict = REPLACE)
-    public abstract void insert(Pizza pizza);
+    public abstract long insert(Pizza pizza);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public abstract void insertAll(List<Pizza> pizzas);

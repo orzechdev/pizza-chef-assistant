@@ -70,14 +70,21 @@ public class MainRepository {
         return mainDatabase.ingredientDao().loadAll();
     }
 
-    public void addPizza(final String name, final String cookingInstruction) {
+    public void addPizza(final String name, final String cookingInstruction, final Ingredient ingredient, final int neededAmount) {
         Log.i("repo", "addPizza");
         List<Pizza> pizzaList = mainDatabase.pizzaDao().loadAll().getValue();
+
+        Pizza pizza = new Pizza(name, cookingInstruction);
+
         if (pizzaList == null || pizzaList.size() == 0) {
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    mainDatabase.pizzaDao().insert(new Pizza(name, cookingInstruction));
+                    int pizzaId = (int) mainDatabase.pizzaDao().insert(pizza);
+
+                    PizzaIngredient pizzaIngredient = new PizzaIngredient(pizzaId, ingredient.id, neededAmount);
+
+                    mainDatabase.pizzaIngredientDao().insert(pizzaIngredient);
                 }
             });
             t.start();

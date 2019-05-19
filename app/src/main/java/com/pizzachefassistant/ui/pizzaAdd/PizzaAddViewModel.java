@@ -22,6 +22,7 @@ import com.pizzachefassistant.App;
 import com.pizzachefassistant.BR;
 import com.pizzachefassistant.repository.MainRepository;
 import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.ui.MainActivity;
 
 import java.util.List;
@@ -62,27 +63,25 @@ public class PizzaAddViewModel extends AndroidViewModel {
         });
     }
 
-    private void addPizza(Ingredient ingredient, int addedAmount) {
-        ingredient.amount = ingredient.amount + addedAmount;
-
-//        mainRepository.saveIngredient(ingredient);
+    private void addPizza(String name, String cookingInstruction, Ingredient ingredient, int neededAmount) {
+        mainRepository.addPizza(name, cookingInstruction, ingredient, neededAmount);
     }
 
     public void onClickSave(View view) {
         Log.i(PizzaAddViewModel.class.getSimpleName(), "onClickSave");
 
-//        List<Ingredient> ingredientList = ingredients.getValue();
-//        if (ingredientList != null) {
-//            Ingredient pizza = ingredients.getValue().get(pizzaObservable.selectedTypePosition);
-//
-//            String pizzaName = pizzaObservable.pizzaName;
-//            Log.i(PizzaAddViewModel.class.getSimpleName(), "onClickSave" + pizzaObservable.pizzaName);
-//
-//            addPizza(pizza, pizzaName);
-//
-//            Context context = view.getContext();
-//            closeActivity(context);
-//        }
+        List<Ingredient> ingredientList = ingredients.getValue();
+        if (ingredientList != null) {
+            Ingredient ingredient = ingredients.getValue().get(pizzaObservable.selectedTypePosition);
+
+            String pizzaName = pizzaObservable.pizzaName;
+            Log.i(PizzaAddViewModel.class.getSimpleName(), "onClickSave" + pizzaObservable.pizzaName);
+
+            addPizza(pizzaName, "", ingredient, 5);
+
+            Context context = view.getContext();
+            closeActivity(context);
+        }
     }
 
     public void onClickCancel(View view) {
