@@ -97,7 +97,7 @@
             android:id="@+id/editText"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:text="@={observable.amount}"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
