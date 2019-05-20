@@ -58,15 +58,15 @@ public class App extends Application {
         List<OrderPizza> orderPizzas = new ArrayList<>();
 
 
-        ingredients.add(new Ingredient(12, "Yeast", "yeastRef", 100, 200));
-        ingredients.add(new Ingredient(13, "Egg", "eggRef", 100, 200));
-        ingredients.add(new Ingredient(14, "Ham", "hamRef", 100, 200));
-        ingredients.add(new Ingredient(15, "Tomato", "tomatoRef", 100, 200));
-        ingredients.add(new Ingredient(16, "Cheese", "cheeseRef", 100, 200));
-        ingredients.add(new Ingredient(17, "Onion", "onionRef", 100, 200));
-        ingredients.add(new Ingredient(18, "Pepper", "pepperRef", 100, 200));
-        ingredients.add(new Ingredient(18, "Poultry", "poultryRef", 100, 200));
-        ingredients.add(new Ingredient(19, "Pepper", "pepperRef", 100, 200));
+        ingredients.add(new Ingredient(12, "Yeast", "Yeast", 100, 200));
+        ingredients.add(new Ingredient(13, "Egg", "Egg", 100, 200));
+        ingredients.add(new Ingredient(14, "Ham", "Ham", 100, 200));
+        ingredients.add(new Ingredient(15, "Tomato", "Tomato", 100, 200));
+        ingredients.add(new Ingredient(16, "Cheese", "Cheese", 100, 200));
+        ingredients.add(new Ingredient(17, "Onion", "Onion", 100, 200));
+        ingredients.add(new Ingredient(18, "Pepper", "Pepper", 100, 200));
+        ingredients.add(new Ingredient(18, "Poultry", "Poultry", 100, 200));
+        ingredients.add(new Ingredient(19, "Pepper", "Pepper", 100, 200));
         pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie", "DO something, then something, and once again something..."));
