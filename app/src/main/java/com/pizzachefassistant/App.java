@@ -98,7 +98,7 @@ public class App extends Application {
         pizzaIngredients.add(new PizzaIngredient(22, 13, 1));
         pizzaIngredients.add(new PizzaIngredient(22, 14, 1));
         pizzaIngredients.add(new PizzaIngredient(22, 17, 1));
-        pizzaIngredients.add(new PizzaIngredient(22, 22, 1));
+        pizzaIngredients.add(new PizzaIngredient(22, 18, 1));
         pizzaIngredients.add(new PizzaIngredient(20, 12, 1));
         pizzaIngredients.add(new PizzaIngredient(20, 13, 1));
         pizzaIngredients.add(new PizzaIngredient(20, 15, 1));

@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 
@@ -14,6 +15,7 @@ import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.ui.IngredientEditActivity;
 
 import java.util.List;
+import java.util.Map;
 
 public class IngredientsViewModel extends AndroidViewModel {
 
@@ -21,6 +23,8 @@ public class IngredientsViewModel extends AndroidViewModel {
 
     public LiveData<List<Ingredient>> ingredients;
     public LiveData<String> exampleText;
+
+    public Map<String, Drawable> ingredientsIcons;
 
     public IngredientsViewModel(Application application) {
         super(application);
@@ -32,6 +36,8 @@ public class IngredientsViewModel extends AndroidViewModel {
     private void mapLiveDataFromRepo() {
         ingredients = mainRepository.getIngredientList();
         exampleText = mainRepository.getIngredientsExampleText();
+
+//        ingredientsIcons = mainRepository.getIngredientsIcons();
 
         // Test
 //        mainRepository.addIngredient("Cheese");
