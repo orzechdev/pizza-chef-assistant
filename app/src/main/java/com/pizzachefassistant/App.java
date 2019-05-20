@@ -16,6 +16,7 @@ import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class App extends Application {
@@ -66,10 +67,6 @@ public class App extends Application {
         ingredients.add(new Ingredient(18, "Pepper", "pepperRef", 100, 200));
         ingredients.add(new Ingredient(18, "Poultry", "poultryRef", 100, 200));
         ingredients.add(new Ingredient(19, "Pepper", "pepperRef", 100, 200));
-        ingredients.add(new Ingredient(20, "Onion", "onionRef", 100, 200));
-        ingredients.add(new Ingredient(21, "Pepper", "pepperRef", 100, 200));
-        ingredients.add(new Ingredient(22, "Poultry", "poultryRef", 100, 200));
-        ingredients.add(new Ingredient(23, "Pepper", "pepperRef", 100, 200));
         pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie", "DO something, then something, and once again something..."));
@@ -85,6 +82,51 @@ public class App extends Application {
         pizzas.add(new Pizza(32, "Quattro Formagi", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(33, "Frutti di Mare", "DO something, then something, and once again something..."));
         pizzas.add(new Pizza(34, "Napoli", "DO something, then something, and once again something..."));
+        orders.add(new Order(43, "ready", "21:23:12",32));
+        orders.add(new Order(44, "ready", "11:23:23",26));
+        orders.add(new Order(45, "ready", "11:26:23",31));
+        orders.add(new Order(46, "ready", "11:23:27",23));
+        orders.add(new Order(47, "ready", "11:26:23",67));
+        orders.add(new Order(48, "ready", "11:29:23",32));
+        orders.add(new Order(49, "ready", "11:33:23",32));
+        orderPizzas.add(new OrderPizza(43, 20, 1));
+        orderPizzas.add(new OrderPizza(44, 21, 1));
+        orderPizzas.add(new OrderPizza(45, 22, 1));
+        orderPizzas.add(new OrderPizza(46, 23, 1));
+        orderPizzas.add(new OrderPizza(47, 24, 1));
+        pizzaIngredients.add(new PizzaIngredient(22, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(22, 13, 1));
+        pizzaIngredients.add(new PizzaIngredient(22, 14, 1));
+        pizzaIngredients.add(new PizzaIngredient(22, 17, 1));
+        pizzaIngredients.add(new PizzaIngredient(22, 22, 1));
+        pizzaIngredients.add(new PizzaIngredient(20, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(20, 13, 1));
+        pizzaIngredients.add(new PizzaIngredient(20, 15, 1));
+        pizzaIngredients.add(new PizzaIngredient(20, 16, 1));
+        pizzaIngredients.add(new PizzaIngredient(20, 19, 1));
+        pizzaIngredients.add(new PizzaIngredient(21, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(21, 14, 1));
+        pizzaIngredients.add(new PizzaIngredient(21, 19, 1));
+        pizzaIngredients.add(new PizzaIngredient(21, 17, 1));
+        pizzaIngredients.add(new PizzaIngredient(21, 18, 1));
+        pizzaIngredients.add(new PizzaIngredient(23, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(23, 13, 1));
+        pizzaIngredients.add(new PizzaIngredient(23, 14, 1));
+        pizzaIngredients.add(new PizzaIngredient(23, 15, 1));
+        pizzaIngredients.add(new PizzaIngredient(24, 14, 1));
+        pizzaIngredients.add(new PizzaIngredient(24, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(24, 13, 1));
+        pizzaIngredients.add(new PizzaIngredient(24, 17, 1));
+        pizzaIngredients.add(new PizzaIngredient(25, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(25, 13, 1));
+        pizzaIngredients.add(new PizzaIngredient(25, 14, 1));
+        pizzaIngredients.add(new PizzaIngredient(26, 12, 1));
+        pizzaIngredients.add(new PizzaIngredient(26, 15, 1));
+        pizzaIngredients.add(new PizzaIngredient(26, 14, 1));
+
+
+
+
         /*
          * TODO:...
          */

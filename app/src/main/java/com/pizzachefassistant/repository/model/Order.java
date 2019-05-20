@@ -11,30 +11,24 @@ import java.util.Date;
 import java.sql.Time;
 import java.time.LocalDateTime;
 
-@Entity(
-        foreignKeys = @ForeignKey(entity = Customer.class, parentColumns = "id", childColumns = "userId"),
-        indices = {@Index("userId")}
-)
+@Entity
 public class Order {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public String status;
-    public Date time;
+    public String time;
     public float price;
-    public int userId;
 
     @Ignore
-    public Order(String status, Date time, float price, int userId){
+    public Order(String status, String time, float price){
         this.status = status;
         this.time = time;
         this.price = price;
-        this.userId = userId;
     }
-    public Order(int id, String status, Date time, float price, int userId){
+    public Order(int id, String status, String time, float price){
         this.id = id;
         this.status = status;
         this.time = time;
         this.price = price;
-        this.userId = userId;
     }
 }
