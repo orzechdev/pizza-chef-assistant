@@ -28,7 +28,7 @@
             android:id="@+id/ingredient_image_view"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:src="#FFB300"
+            app:imgSrc="@{viewModel.pizzaImage}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

@@ -1,11 +1,13 @@
 package com.pizzachefassistant.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.constants.IntentsConstants;

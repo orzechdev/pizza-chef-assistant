@@ -14,6 +14,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.constants.IntentsConstants;
@@ -23,6 +24,7 @@ import com.pizzachefassistant.ui.PizzaActivity;
 import com.pizzachefassistant.ui.utils.ItemClickSupport;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class PizzasFragment extends Fragment {
@@ -50,13 +52,13 @@ public class PizzasFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @BindingAdapter("setupRecyclerView")
-    public static void setupRecyclerView(final RecyclerView view, List<Pizza> data) {
+    @BindingAdapter({"setupRecyclerView", "setupRecyclerViewImages"})
+    public static void setupRecyclerView(final RecyclerView view, List<Pizza> data, Map<String, Integer> dataImages) {
         final List<Pizza> list = data;
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, 1);
         view.setLayoutManager(layoutManager);
-        PizzasRecyclerViewAdapter adapter = new PizzasRecyclerViewAdapter(data);
+        PizzasRecyclerViewAdapter adapter = new PizzasRecyclerViewAdapter(data, dataImages);
         view.setAdapter(adapter);
 
         // Based on https://www.littlerobots.nl/blog/Handle-Android-RecyclerView-Clicks/

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.repository.model.Pizza;
 
 import java.util.List;
+import java.util.Map;
 
 import java8.util.stream.StreamSupport;
 
@@ -21,6 +23,9 @@ public class PizzaViewModel extends AndroidViewModel {
     private MainRepository mainRepository;
 
     public LiveData<Pizza> pizza;
+
+    public Map<String, Integer> pizzasImages;
+    public MutableLiveData<Integer> pizzaImage;
 
     private int requiredPizzaId = -1;
 
@@ -31,12 +36,23 @@ public class PizzaViewModel extends AndroidViewModel {
         super(application);
         mainRepository = ((App)application).getComponent().getRepository();
 
-        mapLiveDataFromRepo();
+        mapLiveDataFromRepo(application);
     }
 
-    private void mapLiveDataFromRepo() {
+    private void mapLiveDataFromRepo(Application application) {
+        Context appContext = ((App)application).getComponent().getContext();
+        pizzasImages = mainRepository.getPizzaImages(appContext);
+
+        pizzaImage = new MutableLiveData<>();
+
         if (requiredPizzaId != -1) {
             pizza = mainRepository.getPizza(requiredPizzaId);
+
+            pizza.observeForever(pizzaObj -> {
+                if (pizzaObj != null) {
+                    pizzaImage.setValue(pizzasImages.get(pizzaObj.pizzaImageSrc));
+                }
+            });
         }
 
         ingredients = mainRepository.getIngredientList();
@@ -55,5 +71,11 @@ public class PizzaViewModel extends AndroidViewModel {
     public void setRequiredPizzaId(int id) {
         requiredPizzaId = id;
         pizza = mainRepository.getPizza(requiredPizzaId);
+
+        pizza.observeForever(pizzaObj -> {
+            if (pizzaObj != null) {
+                pizzaImage.setValue(pizzasImages.get(pizzaObj.pizzaImageSrc));
+            }
+        });
     }
 }

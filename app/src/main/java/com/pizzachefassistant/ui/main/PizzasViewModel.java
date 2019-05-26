@@ -15,6 +15,7 @@ import com.pizzachefassistant.ui.IngredientEditActivity;
 import com.pizzachefassistant.ui.PizzaAddActivity;
 
 import java.util.List;
+import java.util.Map;
 
 public class PizzasViewModel extends AndroidViewModel {
 
@@ -23,16 +24,21 @@ public class PizzasViewModel extends AndroidViewModel {
     public LiveData<String> exampleText;
     public LiveData<List<Pizza>> pizzas;
 
+    public Map<String, Integer> pizzasImages;
+
     public PizzasViewModel(Application application) {
         super(application);
         mainRepository = ((App)application).getComponent().getRepository();
 
-        mapLiveDataFromRepo();
+        mapLiveDataFromRepo(application);
     }
 
-    private void mapLiveDataFromRepo() {
+    private void mapLiveDataFromRepo(Application application) {
         exampleText = mainRepository.getPizzasExampleText();
         pizzas = mainRepository.getPizzaList();
+
+        Context appContext = ((App)application).getComponent().getContext();
+        pizzasImages = mainRepository.getPizzaImages(appContext);
     }
 
     public void onClickFab(View view) {

@@ -10,15 +10,18 @@ public class Pizza {
     public int id;
     public String pizzaName;
     public String cookingInstruction;
+    public String pizzaImageSrc;
 
     @Ignore
-    public Pizza(String pizzaName, String cookingInstruction){
+    public Pizza(String pizzaName, String cookingInstruction, String pizzaImageSrc){
         this.pizzaName = pizzaName;
         this.cookingInstruction = cookingInstruction;
+        this.pizzaImageSrc = pizzaImageSrc;
     }
-    public Pizza(int id, String pizzaName, String cookingInstruction){
+    public Pizza(int id, String pizzaName, String cookingInstruction, String pizzaImageSrc){
         this.id = id;
         this.pizzaName = pizzaName;
         this.cookingInstruction = cookingInstruction;
+        this.pizzaImageSrc = pizzaImageSrc;
     }
 }

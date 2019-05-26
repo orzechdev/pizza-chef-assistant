@@ -11,14 +11,17 @@ import com.pizzachefassistant.BR;
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.repository.model.Pizza;
 import java.util.List;
+import java.util.Map;
 
 public class PizzasRecyclerViewAdapter extends RecyclerView.Adapter<PizzasRecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "PizzasRecyclerViewAd";
     public List<Pizza> pizzas;
+    public Map<String, Integer> pizzasIcons;
 
-    public PizzasRecyclerViewAdapter(List<Pizza> pizzas) {
+    public PizzasRecyclerViewAdapter(List<Pizza> pizzas, Map<String, Integer> pizzasIcons) {
         this.pizzas = pizzas;
+        this.pizzasIcons = pizzasIcons;
     }
 
     @NonNull
@@ -33,7 +36,8 @@ public class PizzasRecyclerViewAdapter extends RecyclerView.Adapter<PizzasRecycl
     public void onBindViewHolder(@NonNull PizzasRecyclerViewAdapter.ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         final Pizza pizza = pizzas.get(i);
-        viewHolder.bind(pizza);
+        Integer pizzaIcon = pizzasIcons.get(pizza.pizzaImageSrc);
+        viewHolder.bind(pizza, pizzaIcon);
     }
 
     @Override
@@ -53,8 +57,9 @@ public class PizzasRecyclerViewAdapter extends RecyclerView.Adapter<PizzasRecycl
             this.binding = binding;
         }
 
-        public void bind(Object obj) {
+        public void bind(Object obj, Integer pizzaIcon) {
             binding.setVariable(BR.obj, obj);
+            binding.setVariable(BR.objIcon, pizzaIcon);
             binding.executePendingBindings();
         }
     }

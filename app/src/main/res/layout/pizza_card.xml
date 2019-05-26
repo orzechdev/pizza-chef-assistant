@@ -7,6 +7,9 @@
         <variable
             name="obj"
             type="com.pizzachefassistant.repository.model.Pizza"/>
+        <variable
+            name="objIcon"
+            type="java.lang.Integer"/>
     </data>
 
     <LinearLayout
@@ -23,7 +26,7 @@
                 android:id="@+id/pizza_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@color/colorPrimary" />
+                app:imgSrc="@{objIcon}" />
 
             <TextView
                 android:id="@+id/pizza_card_name"

@@ -54,9 +54,4 @@ public class IngredientsFragment extends Fragment {
         IngredientsRecyclerViewAdapter adapter = new IngredientsRecyclerViewAdapter(data, dataIcons);
         view.setAdapter(adapter);
     }
-
-    @BindingAdapter("imgSrc")
-    public static void setImageResource(ImageView imageView, Integer resource){
-        imageView.setImageResource(resource);
-    }
 }

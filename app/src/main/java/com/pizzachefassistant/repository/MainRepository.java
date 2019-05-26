@@ -79,7 +79,7 @@ public class MainRepository {
         Log.i("repo", "addPizza");
         List<Pizza> pizzaList = mainDatabase.pizzaDao().loadAll().getValue();
 
-        Pizza pizza = new Pizza(name, cookingInstruction);
+        Pizza pizza = new Pizza(name, cookingInstruction, "pic_carbonara");
 
         if (pizzaList == null || pizzaList.size() == 0) {
             Thread t = new Thread(new Runnable() {
@@ -138,6 +138,20 @@ public class MainRepository {
         iconsList.put("Yeast", R.mipmap.ic_yeast);
 
         return iconsList;
+    }
+
+    public Map<String, Integer> getPizzaImages(Context appContext) {
+        Resources resources = appContext.getResources();
+
+        Map<String, Integer> pizzasList = new HashMap<>();
+        pizzasList.put("pic_carbonara", R.drawable.pic_carbonara);
+        pizzasList.put("pic_frutti", R.drawable.pic_frutti);
+        pizzasList.put("pic_margherita", R.drawable.pic_margherita);
+        pizzasList.put("pic_marinara", R.drawable.pic_marinara);
+        pizzasList.put("pic_napoli", R.drawable.pic_napoli);
+        pizzasList.put("pic_quattro", R.drawable.pic_quattro);
+
+        return pizzasList;
     }
 
     public void deleteAndCreateData(
