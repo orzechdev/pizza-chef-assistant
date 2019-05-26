@@ -2,6 +2,7 @@ package com.pizzachefassistant.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -121,22 +122,20 @@ public class MainRepository {
         t.start();
     }
 
-    public Map<String, Drawable> getIngredientsIcons() {
-        Resources resources = Resources.getSystem();
+    public Map<String, Integer> getIngredientsIcons(Context appContext) {
+        Resources resources = appContext.getResources();
 
-        Map<String, Drawable> iconsList = new HashMap<>();
-        iconsList.put("Cheese", resources.getDrawable(R.mipmap.ic_cheese));
-        iconsList.put("Ham", resources.getDrawable(R.mipmap.ic_ham));
-        iconsList.put("Egg", resources.getDrawable(R.mipmap.ic_egg));
-        iconsList.put("Flour", resources.getDrawable(R.mipmap.ic_flour));
-        iconsList.put("Onion", resources.getDrawable(R.mipmap.ic_onion));
-        iconsList.put("Pepper", resources.getDrawable(R.mipmap.ic_pepper));
-        iconsList.put("Poultry", resources.getDrawable(R.mipmap.ic_poultry));
-        iconsList.put("Spices", resources.getDrawable(R.mipmap.ic_spices));
-        iconsList.put("Tomato", resources.getDrawable(R.mipmap.ic_tomato));
-        iconsList.put("Yeast", resources.getDrawable(R.mipmap.ic_yeast));
-        iconsList.put("Add", resources.getDrawable(R.mipmap.ic_add));
-        iconsList.put("Launcher", resources.getDrawable(R.mipmap.ic_launcher));
+        Map<String, Integer> iconsList = new HashMap<>();
+        iconsList.put("Cheese", R.mipmap.ic_cheese);
+        iconsList.put("Ham", R.mipmap.ic_ham);
+        iconsList.put("Egg", R.mipmap.ic_egg);
+        iconsList.put("Flour", R.mipmap.ic_flour);
+        iconsList.put("Onion", R.mipmap.ic_onion);
+        iconsList.put("Pepper", R.mipmap.ic_pepper);
+        iconsList.put("Poultry", R.mipmap.ic_poultry);
+        iconsList.put("Spices", R.mipmap.ic_spices);
+        iconsList.put("Tomato", R.mipmap.ic_tomato);
+        iconsList.put("Yeast", R.mipmap.ic_yeast);
 
         return iconsList;
     }

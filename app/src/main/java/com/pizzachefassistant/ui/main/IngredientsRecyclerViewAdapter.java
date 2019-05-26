@@ -2,6 +2,7 @@ package com.pizzachefassistant.ui.main;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,15 +14,18 @@ import com.pizzachefassistant.R;
 import com.pizzachefassistant.repository.model.Ingredient;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class IngredientsRecyclerViewAdapter extends RecyclerView.Adapter<IngredientsRecyclerViewAdapter.Viewholder>{
     private static final String TAG = "IngredientsRecyclerView";
 
     public List<Ingredient> ingredients;
+    public Map<String, Integer> ingredientsIcons;
 
-    public IngredientsRecyclerViewAdapter(List<Ingredient> ingredients) {
+    public IngredientsRecyclerViewAdapter(List<Ingredient> ingredients, Map<String, Integer> ingredientsIcons) {
         this.ingredients = ingredients;
+        this.ingredientsIcons = ingredientsIcons;
     }
 
     @NonNull
@@ -36,7 +40,8 @@ public class IngredientsRecyclerViewAdapter extends RecyclerView.Adapter<Ingredi
     public void onBindViewHolder(@NonNull Viewholder viewholder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         final Ingredient ingredient = ingredients.get(i);
-        viewholder.bind(ingredient);
+        Integer ingredientIcon = ingredientsIcons.get(ingredient.picRef);
+        viewholder.bind(ingredient, ingredientIcon);
     }
 
     @Override
@@ -53,8 +58,9 @@ public class IngredientsRecyclerViewAdapter extends RecyclerView.Adapter<Ingredi
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(Object obj) {
+        public void bind(Object obj, Integer ingredientIcon) {
             binding.setVariable(BR.obj, obj);
+            binding.setVariable(BR.objIcon, ingredientIcon);
             binding.executePendingBindings();
         }
     }

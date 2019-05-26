@@ -24,20 +24,21 @@ public class IngredientsViewModel extends AndroidViewModel {
     public LiveData<List<Ingredient>> ingredients;
     public LiveData<String> exampleText;
 
-    public Map<String, Drawable> ingredientsIcons;
+    public Map<String, Integer> ingredientsIcons;
 
     public IngredientsViewModel(Application application) {
         super(application);
         mainRepository = ((App)application).getComponent().getRepository();
 
-        mapLiveDataFromRepo();
+        mapLiveDataFromRepo(application);
     }
 
-    private void mapLiveDataFromRepo() {
+    private void mapLiveDataFromRepo(Application application) {
         ingredients = mainRepository.getIngredientList();
         exampleText = mainRepository.getIngredientsExampleText();
 
-//        ingredientsIcons = mainRepository.getIngredientsIcons();
+        Context appContext = ((App)application).getComponent().getContext();
+        ingredientsIcons = mainRepository.getIngredientsIcons(appContext);
 
         // Test
 //        mainRepository.addIngredient("Cheese");

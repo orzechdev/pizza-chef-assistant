@@ -3,6 +3,7 @@ package com.pizzachefassistant.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,12 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.databinding.IngredientsFragmentBinding;
 import com.pizzachefassistant.repository.model.Ingredient;
 
 import java.util.List;
+import java.util.Map;
 
 public class IngredientsFragment extends Fragment {
 
@@ -44,11 +47,16 @@ public class IngredientsFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @BindingAdapter("setupRecyclerView")
-    public static void setupRecyclerView(final RecyclerView view, List<Ingredient> data) {
+    @BindingAdapter({"setupRecyclerView", "setupRecyclerViewIcons"})
+    public static void setupRecyclerViewWithIcons(final RecyclerView view, List<Ingredient> data, Map<String, Integer> dataIcons) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         view.setLayoutManager(layoutManager);
-        IngredientsRecyclerViewAdapter adapter = new IngredientsRecyclerViewAdapter(data);
+        IngredientsRecyclerViewAdapter adapter = new IngredientsRecyclerViewAdapter(data, dataIcons);
         view.setAdapter(adapter);
+    }
+
+    @BindingAdapter("imgSrc")
+    public static void setImageResource(ImageView imageView, Integer resource){
+        imageView.setImageResource(resource);
     }
 }

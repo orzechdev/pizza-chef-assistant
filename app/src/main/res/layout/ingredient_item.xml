@@ -7,6 +7,9 @@
         <variable
             name="obj"
             type="com.pizzachefassistant.repository.model.Ingredient"/>
+        <variable
+            name="objIcon"
+            type="java.lang.Integer"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -18,7 +21,7 @@
             android:id="@+id/ingredient_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@mipmap/ic_cheese"
+            app:imgSrc="@{objIcon}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
