@@ -27,9 +27,12 @@
         <ImageView
             android:id="@+id/ingredient_image_view"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             app:imgSrc="@{viewModel.pizzaImage}"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            />
 
         <TextView
             android:id="@+id/pizza_item_pizza_name"
