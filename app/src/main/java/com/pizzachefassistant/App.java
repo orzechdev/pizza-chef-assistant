@@ -57,7 +57,8 @@ public class App extends Application {
         List<PizzaIngredient> pizzaIngredients = new ArrayList<>();
         List<OrderPizza> orderPizzas = new ArrayList<>();
 
-
+        ingredients.add(new Ingredient(10, "Spices", "Spices", 100, 200));
+        ingredients.add(new Ingredient(11, "Flour", "Flour", 100, 200));
         ingredients.add(new Ingredient(12, "Yeast", "Yeast", 100, 200));
         ingredients.add(new Ingredient(13, "Egg", "Egg", 100, 200));
         ingredients.add(new Ingredient(14, "Ham", "Ham", 100, 200));
