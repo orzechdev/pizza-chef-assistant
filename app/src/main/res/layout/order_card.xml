@@ -12,10 +12,10 @@
         android:layout_gravity="top">
 
         <TextView
-            android:padding="5dp"
             android:id="@+id/pizza_order_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:text="Time of Delivery" />
 
         <android.support.v7.widget.RecyclerView
