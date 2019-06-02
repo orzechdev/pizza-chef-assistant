@@ -8,11 +8,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.constants.IntentsConstants;
 import com.pizzachefassistant.databinding.PizzaItemBinding;
+import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.ui.pizza.PizzaIngredientsAdapter;
 import com.pizzachefassistant.ui.pizza.PizzaViewModel;
+
+import java.util.List;
+import java.util.Map;
 
 public class PizzaActivity extends AppCompatActivity {
 
@@ -38,5 +44,13 @@ public class PizzaActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
 
         binding.setLifecycleOwner(this);
+    }
+
+    @BindingAdapter({"setupListView", "setupListViewImages"})
+    public static void setupRecyclerView(final ListView view, List<Ingredient> data, Map<String, Integer> dataImages) {
+        if (data != null && dataImages != null) {
+            PizzaIngredientsAdapter adapter = new PizzaIngredientsAdapter(view.getContext(), data, dataImages);
+            view.setAdapter(adapter);
+        }
     }
 }

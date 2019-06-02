@@ -8,6 +8,7 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 import android.arch.persistence.room.Transaction;
 
+import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public abstract class PizzaIngredientDao {
 
     @Query("SELECT * FROM `PizzaIngredient`")
     public abstract LiveData<List<PizzaIngredient>> loadAll();
+
+    @Query("SELECT Ingredient.* FROM Ingredient INNER JOIN PizzaIngredient ON PizzaIngredient.ingredientID_FK = Ingredient.id WHERE pizzaID_FK = :pizzaID_FK")
+    public abstract LiveData<List<Ingredient>> loadIngredientsByPizzaId(int pizzaID_FK);
 
     @Update
     public abstract void updatePizzaIngredients(PizzaIngredient... pizzaIngredients);

@@ -30,6 +30,7 @@ public class PizzaViewModel extends AndroidViewModel {
     private int requiredPizzaId = -1;
 
     public LiveData<List<Ingredient>> ingredients;
+    public Map<String, Integer> ingredientsIcons;
     public String[] ingredientsArray;
 
     public PizzaViewModel(@NonNull Application application) {
@@ -53,6 +54,8 @@ public class PizzaViewModel extends AndroidViewModel {
                     pizzaImage.setValue(pizzasImages.get(pizzaObj.pizzaImageSrc));
                 }
             });
+
+            ingredients = mainRepository.getIngredientListByPizzaId(requiredPizzaId);
         }
 
         ingredients = mainRepository.getIngredientList();
@@ -66,6 +69,8 @@ public class PizzaViewModel extends AndroidViewModel {
                 ingredientsArray = ingredientsStrings;
             }
         });
+
+        ingredientsIcons = mainRepository.getIngredientsIcons(appContext);
     }
 
     public void setRequiredPizzaId(int id) {
@@ -77,5 +82,7 @@ public class PizzaViewModel extends AndroidViewModel {
                 pizzaImage.setValue(pizzasImages.get(pizzaObj.pizzaImageSrc));
             }
         });
+
+        ingredients = mainRepository.getIngredientListByPizzaId(requiredPizzaId);
     }
 }

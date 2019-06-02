@@ -71,6 +71,10 @@ public class MainRepository {
         return mainDatabase.ingredientDao().loadAll();
     }
 
+    public LiveData<List<Ingredient>> getIngredientListByPizzaId(Integer pizzaId) {
+        return mainDatabase.pizzaIngredientDao().loadIngredientsByPizzaId(pizzaId);
+    }
+
     public LiveData<Pizza> getPizza(int id) {
         return mainDatabase.pizzaDao().load(id);
     }
