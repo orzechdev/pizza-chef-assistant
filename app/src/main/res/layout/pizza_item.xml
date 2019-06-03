@@ -1,113 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <FrameLayout android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:layout_collapseMode="parallax">
+                    <ImageView
+                        android:id="@+id/ingredient_image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:imgSrc="@{viewModel.pizzaImage}"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/pizza_item_pizza_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.pizza.pizzaName}"
+                        android:textColor="@android:color/white"
+                        android:textSize="30dp"
+                        android:layout_gravity="start|bottom"
+                        android:padding="16dp" />
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Ingredients"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ingredient_image_view" />
+
+                <com.pizzachefassistant.ui.utils.MyListView
+                    android:id="@+id/listViewIngredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:setupListView="@{viewModel.ingredients}"
+                    app:setupListViewImages="@{viewModel.ingredientsIcons}" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Cooking Instruction"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/listViewIngredients" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="32dp"
+                    android:text="Cooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking Instruction"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17"
+                    tools:layout_editor_absoluteX="215dp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Price"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <TextView
+                    android:id="@+id/pizza_item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="16dp"
+                    android:text="40 zł"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
 
     <data>
         <variable
             name="viewModel"
             type="com.pizzachefassistant.ui.pizza.PizzaViewModel"/>
     </data>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="166dp"
-            android:text="Cooking Instruction"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listViewIngredients" />
-
-        <ImageView
-            android:id="@+id/ingredient_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:imgSrc="@{viewModel.pizzaImage}"
-            app:layout_constraintTop_toTopOf="parent"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            />
-
-        <TextView
-            android:id="@+id/pizza_item_pizza_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="248dp"
-            android:layout_marginBottom="32dp"
-            android:text="@{viewModel.pizza.pizzaName}"
-            android:textColor="@android:color/white"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ingredient_image_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:text="Ingredients"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredient_image_view" />
-
-        <ListView
-            android:id="@+id/listViewIngredients"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:setupListView="@{viewModel.ingredients}"
-            app:setupListViewImages="@{viewModel.ingredientsIcons}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:text="Price"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-        <TextView
-            android:id="@+id/pizza_item_price"
-            android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
-            android:text="40 zł"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            android:text="Cooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking Instruction"
-            app:layout_constraintTop_toBottomOf="@+id/textView17"
-            tools:layout_editor_absoluteX="215dp" />
-
-
-    </android.support.constraint.ConstraintLayout>
 
 </layout>
