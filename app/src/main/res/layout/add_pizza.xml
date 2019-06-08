@@ -14,30 +14,20 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="Cooking Instruction"
             android:textColor="#A0A0A0"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Ingredient"
-            android:textColor="#A0A0A0"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/add_ingredient_spinner2"
-            app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner2" />
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/add_ingredient_to_pizza_ingredientbutton" />
 
         <TextView
             android:id="@+id/textView9"
@@ -54,37 +44,13 @@
             android:id="@+id/add_ingredient_cancel_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
             android:background="@android:color/white"
             android:onClick="@{viewModel::onClickSave}"
             android:text="Add"
             android:textColor="#FFB300"
-            app:layout_constraintStart_toEndOf="@+id/add_ingredient_add_button2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_pizza_cooking_instruction" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Amount"
-            android:textColor="#A0A0A0"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/add_pizza_ingredient_needed_amount"
-            app:layout_constraintStart_toStartOf="@+id/add_pizza_ingredient_needed_amount" />
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/add_ingredient_spinner2"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="70dp"
-            android:selectedItemPosition="@={observable.selectedTypePosition}"
-            android:spinnerMode="dropdown"
-            app:entries="@{observable.types}"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
         <TextView
             android:id="@+id/textView7"
@@ -104,40 +70,20 @@
             android:id="@+id/add_ingredient_add_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:layout_marginLeft="200dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@android:color/white"
             android:onClick="@{viewModel::onClickCancel}"
             android:text="Cancel"
             android:textColor="#a0a0a0"
-            app:layout_constraintStart_toStartOf="@+id/add_ingredient_spinner2"
+            app:layout_constraintEnd_toStartOf="@+id/add_ingredient_cancel_button3"
             app:layout_constraintTop_toBottomOf="@+id/add_pizza_cooking_instruction" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/add_ingredient_spinner2"
-            tools:layout_editor_absoluteX="8dp" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="65dp"
-            android:background="@null"
-            app:layout_constraintStart_toEndOf="@+id/add_pizza_ingredient_needed_amount"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            app:srcCompat="@mipmap/ic_add"
-            tools:srcCompat="@mipmap/ic_add" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout2"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="70dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -147,28 +93,39 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="@={observable.pizzaName}"
-                android:hint="Type your pizza name here:" />
+                android:hint="Type your pizza name here:"
+                android:text="@={observable.pizzaName}" />
         </android.support.design.widget.TextInputLayout>
 
         <EditText
             android:id="@+id/add_pizza_cooking_instruction"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:hint="Cooking Instruction"
+            android:hint=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-        <EditText
-            android:id="@+id/add_pizza_ingredient_needed_amount"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintStart_toEndOf="@+id/add_ingredient_spinner2"
-            app:layout_constraintTop_toTopOf="@+id/add_ingredient_spinner2" />
+        <Button
+            android:id="@+id/add_ingredient_to_pizza_ingredientbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="Add Ingredient"
+            android:onClick="onButtonShowPopupWindowClick"
+            android:textColor="#FFB300"
+            app:layout_constraintTop_toBottomOf="@+id/myListView"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <com.pizzachefassistant.ui.utils.MyListView
+            android:id="@+id/myListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+            tools:layout_editor_absoluteX="278dp" />
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>
