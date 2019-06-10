@@ -22,7 +22,7 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Amount"
             app:layout_constraintStart_toStartOf="@+id/add_ingredient_to_pizza_spinner"
             app:layout_constraintTop_toBottomOf="@+id/add_ingredient_to_pizza_spinner" />
@@ -31,7 +31,6 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="Add ingredient"
             android:textColor="#000"
             android:textSize="30dp"

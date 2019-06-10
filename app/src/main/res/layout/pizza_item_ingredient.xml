@@ -10,24 +10,47 @@
             type="java.lang.Integer"/>
     </data>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/ingredient_pizza_item_needed_amount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="@{ingredient.ingredientName}"/>
+            android:layout_centerVertical="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:text="@{ingredient.ingredientName}"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ingredient_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@{ingredientIcon}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/ingredient_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="@{Integer.toString(ingredient.amount)}"/>
+            android:layout_centerVertical="true"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:text="@{Integer.toString(ingredient.amount)}"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/ingredient_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 </layout>
