@@ -19,9 +19,20 @@ import com.pizzachefassistant.repository.model.PizzaIngredient;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.Completable;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.observers.DisposableMaybeObserver;
+import io.reactivex.schedulers.Schedulers;
+import java8.util.stream.StreamSupport;
 
 @Singleton
 public class MainRepository {
@@ -79,11 +90,11 @@ public class MainRepository {
         return mainDatabase.pizzaDao().load(id);
     }
 
-    public void addPizza(final String name, final String cookingInstruction, final Ingredient ingredient, final int neededAmount) {
+    public void addPizza(final String name, final String cookingInstruction, final String price, final Ingredient ingredient, final int neededAmount) {
         Log.i("repo", "addPizza");
         List<Pizza> pizzaList = mainDatabase.pizzaDao().loadAll().getValue();
 
-        Pizza pizza = new Pizza(name, cookingInstruction, "pic_carbonara");
+        Pizza pizza = new Pizza(name, cookingInstruction, "pic_carbonara", price);
 
         if (pizzaList == null || pizzaList.size() == 0) {
             Thread t = new Thread(new Runnable() {
@@ -98,6 +109,67 @@ public class MainRepository {
             });
             t.start();
         }
+    }
+
+    public void addPizzaWithIngredients(final String name, final String cookingInstruction, final String price, final List<PizzaIngredient> pizzaIngredients) {
+        Log.i("repo", "addPizzaWithIngredients");
+
+        Pizza pizza = new Pizza(name, cookingInstruction, "pic_carbonara", price);
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                mainDatabase.pizzaIngredientDao().insertPizzaWithIngredients(pizza, pizzaIngredients);
+//                int pizzaId = (int) mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
+//
+//                mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients);
+//
+//                Completable insertPizzaCompletable = Completable.fromAction(() -> mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza));
+//                Completable insertPizzaIngredientsCompletable = Completable.fromAction(() -> mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients));
+
+                Observable.fromCallable(new Callable<Object>() {
+                    @Override
+                    public Object call() throws Exception {
+                        return mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
+                    }
+                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(@NonNull Object o) throws Exception {
+                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = ((Long) o).intValue());
+                        Log.i("repo KURWA MAC ", Long.toString(((Long) o).intValue()));
+                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> Log.i("repo KURWA MAC CHUJ ",
+                                Integer.toString(pizzaIngredient.pizzaID_FK) + " " +
+                                Integer.toString(pizzaIngredient.ingredientID_FK) + " " +
+                                Integer.toString(pizzaIngredient.neededAmount)
+                                ));
+                        // the o will be Long[].size => numbers of inserted records.
+                        Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+//                                try {
+//                                TimeUnit.SECONDS.sleep(10);
+//                                }
+//                                catch(InterruptedException ex)
+//                                {
+//                                    Thread.currentThread().interrupt();
+//                                }
+                                mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients);}
+                            });
+                        t.start();
+
+                    }
+                });
+
+//                insertPizzaCompletable.subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(new DisposableMaybeObserver() {
+//
+//                        }
+//                        .andThen(pizzaId -> StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = pizzaId);)
+//                        .andThen(insertPizzaIngredientsCompletable);
+            }
+        });
+        t.start();
     }
 
     public LiveData<Ingredient> getIngredient(final int id) {

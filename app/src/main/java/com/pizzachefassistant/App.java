@@ -23,7 +23,7 @@ public class App extends Application {
 
     private AppComponent component;
 
-    private static final boolean INIT_SAMPLE_DATA = true;
+    private static final boolean INIT_SAMPLE_DATA = false;//true;
 
 //    @Inject
 //    Retrofit retrofit;
@@ -68,21 +68,21 @@ public class App extends Application {
         ingredients.add(new Ingredient(18, "Pepper", "Pepper", 100, 200));
         ingredients.add(new Ingredient(18, "Poultry", "Poultry", 100, 200));
         ingredients.add(new Ingredient(19, "Pepper", "Pepper", 100, 200));
-        pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something...", "pic_carbonara"));
-        pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something...", "pic_margherita"));
-        pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie", "DO something, then something, and once again something...", "pic_marinara"));
-        pizzas.add(new Pizza(23, "Frutti di Mare", "DO something, then something, and once again something...", "pic_frutti"));
-        pizzas.add(new Pizza(24, "Carbonara", "DO something, then something, and once again something...", "pic_napoli"));
-        pizzas.add(new Pizza(25, "Margherita", "DO something, then something, and once again something...", "pic_quattro"));
-        pizzas.add(new Pizza(26, "Marinara", "DO something, then something, and once again something...", "pic_carbonara"));
-        pizzas.add(new Pizza(27, "Quattro Formagi", "DO something, then something, and once again something...", "pic_frutti"));
-        pizzas.add(new Pizza(28, "Frutti di Mare", "DO something, then something, and once again something...", "pic_margherita"));
-        pizzas.add(new Pizza(29, "Napoli", "DO something, then something, and once again something...", "pic_marinara"));
-        pizzas.add(new Pizza(30, "Margherita", "DO something, then something, and once again something...", "pic_napoli"));
-        pizzas.add(new Pizza(31, "Marinara", "DO something, then something, and once again something...", "pic_quattro"));
-        pizzas.add(new Pizza(32, "Quattro Formagi", "DO something, then something, and once again something...", "pic_carbonara"));
-        pizzas.add(new Pizza(33, "Frutti di Mare", "DO something, then something, and once again something...", "pic_frutti"));
-        pizzas.add(new Pizza(34, "Napoli", "DO something, then something, and once again something...", "pic_margherita"));
+        pizzas.add(new Pizza(20, "Margherita", "DO something, then something, and once again something...", "pic_carbonara", "12 zł"));
+        pizzas.add(new Pizza(21, "Marinara", "DO something, then something, and once again something...", "pic_margherita", "14 zł"));
+        pizzas.add(new Pizza(22, "Quattro Formagi buydsbvie", "DO something, then something, and once again something...", "pic_marinara", "14 zł"));
+        pizzas.add(new Pizza(23, "Frutti di Mare", "DO something, then something, and once again something...", "pic_frutti", "16 zł"));
+        pizzas.add(new Pizza(24, "Carbonara", "DO something, then something, and once again something...", "pic_napoli", "20 zł"));
+        pizzas.add(new Pizza(25, "Margherita", "DO something, then something, and once again something...", "pic_quattro", "16 zł"));
+        pizzas.add(new Pizza(26, "Marinara", "DO something, then something, and once again something...", "pic_carbonara", "16 zł"));
+        pizzas.add(new Pizza(27, "Quattro Formagi", "DO something, then something, and once again something...", "pic_frutti", "24 zł"));
+        pizzas.add(new Pizza(28, "Frutti di Mare", "DO something, then something, and once again something...", "pic_margherita", "12 zł"));
+        pizzas.add(new Pizza(29, "Napoli", "DO something, then something, and once again something...", "pic_marinara", "16 zł"));
+        pizzas.add(new Pizza(30, "Margherita", "DO something, then something, and once again something...", "pic_napoli", "24 zł"));
+        pizzas.add(new Pizza(31, "Marinara", "DO something, then something, and once again something...", "pic_quattro", "20 zł"));
+        pizzas.add(new Pizza(32, "Quattro Formagi", "DO something, then something, and once again something...", "pic_carbonara", "20 zł"));
+        pizzas.add(new Pizza(33, "Frutti di Mare", "DO something, then something, and once again something...", "pic_frutti", "18 zł"));
+        pizzas.add(new Pizza(34, "Napoli", "DO something, then something, and once again something...", "pic_margherita", "16 zł"));
         orders.add(new Order(43, "ready", "21:23:12",32));
         orders.add(new Order(44, "ready", "11:23:23",26));
         orders.add(new Order(45, "ready", "11:26:23",31));

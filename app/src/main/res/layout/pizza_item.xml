@@ -90,7 +90,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="32dp"
                     android:textSize="20dp"
-                    android:text="Cooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking InstructionCooking Instruction"
+                    android:text="@{viewModel.pizza.cookingInstruction}"
                     app:layout_constraintTop_toBottomOf="@+id/textView17"
                     tools:layout_editor_absoluteX="215dp" />
 
@@ -114,7 +114,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginTop="16dp"
-                    android:text="40 zł"
+                    android:text="@{viewModel.pizza.price}"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />

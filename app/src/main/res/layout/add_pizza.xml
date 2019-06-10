@@ -52,7 +52,7 @@
             android:text="Add"
             android:textColor="#FFB300"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_pizza_cooking_instruction" />
+            app:layout_constraintTop_toBottomOf="@+id/add_pizza_price" />
 
         <Button
             android:id="@+id/add_ingredient_add_button2"
@@ -89,6 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:hint=""
+            android:text="@={observable.cookingInstruction}"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,13 +97,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
+        <EditText
+            android:id="@+id/add_pizza_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:text="@={observable.price}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_pizza_cooking_instruction" />
+
         <Button
             android:id="@+id/add_ingredient_to_pizza_ingredientbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:text="Add Ingredient"
-            android:onClick="onButtonShowPopupWindowClick"
+            android:onClick="@{viewModel::onAddIngredientButtonClick}"
             android:textColor="#FFB300"
             app:layout_constraintTop_toBottomOf="@+id/myListView"
             tools:layout_editor_absoluteX="16dp" />

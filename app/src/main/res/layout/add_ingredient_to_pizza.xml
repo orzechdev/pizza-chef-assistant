@@ -5,10 +5,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.pizzachefassistant.ui.ingredientEdit.IngredientEditViewModel"/>
+            type="com.pizzachefassistant.ui.pizzaAdd.PizzaAddViewModel"/>
         <variable
             name="observable"
-            type="com.pizzachefassistant.ui.ingredientEdit.IngredientEditViewModel.IngredientObservable"/>
+            type="com.pizzachefassistant.ui.pizzaAdd.PizzaAddViewModel.IngredientObservable"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -41,6 +41,7 @@
             android:id="@+id/add_ingredient_to_pizza_spinner"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:selectedItemPosition="@={observable.selectedTypePosition}"
             app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/textView15"
             app:entries="@{observable.types}"/>
@@ -59,6 +60,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="@={observable.neededAmount}"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="@+id/textView19"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -71,6 +73,7 @@
             android:background="@android:color/white"
             android:text="Add"
             android:textColor="#FFB300"
+            android:onClick="@{viewModel::onAddIngredientSaveButtonClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_ingredient_to_pizza_amount" />

@@ -2,6 +2,7 @@ package com.pizzachefassistant.repository.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 
 @Entity(
@@ -17,6 +18,12 @@ public class PizzaIngredient {
 
     public PizzaIngredient(int pizzaID_FK, int ingredientID_FK, int neededAmount){
         this.pizzaID_FK = pizzaID_FK;
+        this.ingredientID_FK = ingredientID_FK;
+        this.neededAmount = neededAmount;
+    }
+
+    @Ignore
+    public PizzaIngredient(int ingredientID_FK, int neededAmount){
         this.ingredientID_FK = ingredientID_FK;
         this.neededAmount = neededAmount;
     }

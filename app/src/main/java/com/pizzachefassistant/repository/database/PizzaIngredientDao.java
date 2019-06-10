@@ -9,9 +9,12 @@ import android.arch.persistence.room.Update;
 import android.arch.persistence.room.Transaction;
 
 import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.List;
+
+import java8.util.stream.StreamSupport;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
@@ -41,6 +44,23 @@ public abstract class PizzaIngredientDao {
     @Transaction
     public void deleteAndCreate(List<PizzaIngredient> pizzaIngredients) {
         deleteAll();
+        insertAll(pizzaIngredients);
+    }
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public abstract long insertPizza(Pizza pizza);
+
+    @Transaction
+    public long insertPizzaTransact(Pizza pizza) {
+        return insertPizza(pizza);
+//        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = pizzaId);
+//        insertAll(pizzaIngredients);
+    }
+
+    @Transaction
+    public void insertPizzaIngredientsTransact(List<PizzaIngredient> pizzaIngredients) {
+//        insertPizza(pizza);
+//        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = pizzaId);
         insertAll(pizzaIngredients);
     }
 }
