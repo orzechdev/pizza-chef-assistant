@@ -124,6 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            app:setupListViewImages="@{viewModel.ingredientsIcons}"
+            app:setupListView="@{viewModel.ingredientsSelected}"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
             tools:layout_editor_absoluteX="278dp" />
 

@@ -1,26 +1,22 @@
 package com.pizzachefassistant.ui;
 
-import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.style.ForegroundColorSpan;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
+import android.widget.ListView;
 
 import com.pizzachefassistant.R;
-import com.pizzachefassistant.databinding.AddIngredientToPizzaBinding;
 import com.pizzachefassistant.databinding.AddPizzaBinding;
+import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.ui.pizza.PizzaIngredientsAdapter;
 import com.pizzachefassistant.ui.pizzaAdd.PizzaAddViewModel;
+
+import java.util.List;
+import java.util.Map;
 
 public class PizzaAddActivity extends AppCompatActivity {
 
@@ -47,6 +43,13 @@ public class PizzaAddActivity extends AppCompatActivity {
     }
 
 
+    @BindingAdapter({"setupListView", "setupListViewImages"})
+    public static void setupListView(final ListView view, List<Ingredient> data, Map<String, Integer> dataImages) {
+        if (data != null && dataImages != null) {
+            PizzaIngredientsAdapter adapter = new PizzaIngredientsAdapter(view.getContext(), data, dataImages);
+            view.setAdapter(adapter);
+        }
+    }
 
     public void onButtonShowPopupWindowClick(View view) {
 

@@ -32,6 +32,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableMaybeObserver;
 import io.reactivex.schedulers.Schedulers;
+import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 
 @Singleton
@@ -119,6 +120,34 @@ public class MainRepository {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+
+                long pizzaId = mainDatabase.pizzaDao().insert(pizza);
+
+                Log.i("repo", "addPizzaWithIngredients-1 pizzaId: " + Long.toString(pizzaId));
+                StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient ->
+                        Log.i("repo", "addPizzaWithIngredients-2 ingredient: " +
+                                Integer.toString(pizzaIngredient.pizzaID_FK) + " " +
+                            Integer.toString(pizzaIngredient.ingredientID_FK) + " " +
+                            Integer.toString(pizzaIngredient.neededAmount)
+                        )
+                );
+
+                List<PizzaIngredient> pizzaIngredientsToDB = StreamSupport.stream(pizzaIngredients).map(pizzaIngredient ->
+                    new PizzaIngredient((int) pizzaId, pizzaIngredient.ingredientID_FK, pizzaIngredient.neededAmount)
+                ).collect(Collectors.toList());
+
+                StreamSupport.stream(pizzaIngredientsToDB).forEach(pizzaIngredient ->
+                        Log.i("repo", "addPizzaWithIngredients-3 ingredient: " +
+                                Integer.toString(pizzaIngredient.pizzaID_FK) + " " +
+                            Integer.toString(pizzaIngredient.ingredientID_FK) + " " +
+                            Integer.toString(pizzaIngredient.neededAmount)
+                        )
+                );
+
+                mainDatabase.pizzaIngredientDao().insertAll(pizzaIngredientsToDB);
+
+
+
 //                mainDatabase.pizzaIngredientDao().insertPizzaWithIngredients(pizza, pizzaIngredients);
 //                int pizzaId = (int) mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
 //
@@ -127,38 +156,38 @@ public class MainRepository {
 //                Completable insertPizzaCompletable = Completable.fromAction(() -> mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza));
 //                Completable insertPizzaIngredientsCompletable = Completable.fromAction(() -> mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients));
 
-                Observable.fromCallable(new Callable<Object>() {
-                    @Override
-                    public Object call() throws Exception {
-                        return mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
-                    }
-                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(@NonNull Object o) throws Exception {
-                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = ((Long) o).intValue());
-                        Log.i("repo KURWA MAC ", Long.toString(((Long) o).intValue()));
-                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> Log.i("repo KURWA MAC CHUJ ",
-                                Integer.toString(pizzaIngredient.pizzaID_FK) + " " +
-                                Integer.toString(pizzaIngredient.ingredientID_FK) + " " +
-                                Integer.toString(pizzaIngredient.neededAmount)
-                                ));
-                        // the o will be Long[].size => numbers of inserted records.
-                        Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-//                                try {
-//                                TimeUnit.SECONDS.sleep(10);
-//                                }
-//                                catch(InterruptedException ex)
-//                                {
-//                                    Thread.currentThread().interrupt();
-//                                }
-                                mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients);}
-                            });
-                        t.start();
-
-                    }
-                });
+//                Observable.fromCallable(new Callable<Object>() {
+//                    @Override
+//                    public Object call() throws Exception {
+//                        return mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
+//                    }
+//                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Object>() {
+//                    @Override
+//                    public void accept(@NonNull Object o) throws Exception {
+//                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = ((Long) o).intValue());
+//                        Log.i("repo KURWA MAC ", Long.toString(((Long) o).intValue()));
+//                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> Log.i("repo KURWA MAC CHUJ ",
+//                                Integer.toString(pizzaIngredient.pizzaID_FK) + " " +
+//                                Integer.toString(pizzaIngredient.ingredientID_FK) + " " +
+//                                Integer.toString(pizzaIngredient.neededAmount)
+//                                ));
+//                        // the o will be Long[].size => numbers of inserted records.
+//                        Thread t = new Thread(new Runnable() {
+//                            @Override
+//                            public void run() {
+////                                try {
+////                                TimeUnit.SECONDS.sleep(10);
+////                                }
+////                                catch(InterruptedException ex)
+////                                {
+////                                    Thread.currentThread().interrupt();
+////                                }
+//                                mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients);}
+//                            });
+//                        t.start();
+//
+//                    }
+//                });
 
 //                insertPizzaCompletable.subscribeOn(Schedulers.io())
 //                        .observeOn(AndroidSchedulers.mainThread())

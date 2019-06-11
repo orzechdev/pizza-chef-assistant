@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.Dialog;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
@@ -31,6 +32,7 @@ import com.pizzachefassistant.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
@@ -42,9 +44,11 @@ public class PizzaAddViewModel extends AndroidViewModel {
     private MainRepository mainRepository;
 
     public LiveData<List<Ingredient>> ingredients;
+    public Map<String, Integer> ingredientsIcons;
     public String[] ingredientsArray;
 
     public IngredientObservable currentlyAddedIngredientObservable;
+    public MutableLiveData<List<Ingredient>> ingredientsSelected;
     public List<IngredientObservable> pizzaIngredientsObservables;
 
     private Dialog addIngredientDialog;
@@ -56,10 +60,13 @@ public class PizzaAddViewModel extends AndroidViewModel {
         pizzaObservable = new PizzaObservable();
         currentlyAddedIngredientObservable = new IngredientObservable();
 
-        mapLiveDataFromRepo();
+        mapLiveDataFromRepo(application);
     }
 
-    private void mapLiveDataFromRepo() {
+    private void mapLiveDataFromRepo(Application application) {
+        Context appContext = ((App)application).getComponent().getContext();
+        ingredientsSelected = new MutableLiveData<>();
+        ingredientsSelected.setValue(new ArrayList<>());
         pizzaIngredientsObservables = new ArrayList<>();
 
         ingredients = mainRepository.getIngredientList();
@@ -75,6 +82,8 @@ public class PizzaAddViewModel extends AndroidViewModel {
                 currentlyAddedIngredientObservable.setTypes(ingredientsArray);
             }
         });
+
+        ingredientsIcons = mainRepository.getIngredientsIcons(appContext);
     }
 
     private void addPizza(String name, String cookingInstruction, String price, Ingredient ingredient, int neededAmount) {
@@ -104,7 +113,7 @@ public class PizzaAddViewModel extends AndroidViewModel {
 
             List<PizzaIngredient> pizzaIngredients = StreamSupport.stream(pizzaIngredientsObservables).map(pizzaIngredientsObservable -> {
                 return new PizzaIngredient(
-                    pizzaIngredientsObservable.selectedTypePosition,
+                    ingredientList.get(pizzaIngredientsObservable.selectedTypePosition).id,
                     Integer.parseInt(pizzaIngredientsObservable.neededAmount)
                 );
             }).collect(Collectors.toList());
@@ -147,7 +156,21 @@ public class PizzaAddViewModel extends AndroidViewModel {
 //
 //        PizzaIngredient pizzaIngredient = new PizzaIngredient()
 
-        pizzaIngredientsObservables.add(currentlyAddedIngredientObservable);
+        List<Ingredient> ingredientsValue = ingredients.getValue();
+        if (ingredientsValue != null) {
+            pizzaIngredientsObservables.add(currentlyAddedIngredientObservable);
+
+            Ingredient newIngredient = ingredientsValue.get(currentlyAddedIngredientObservable.selectedTypePosition);
+
+            List<Ingredient> ingredientsSelectedValue = ingredientsSelected.getValue();
+            if (ingredientsSelectedValue == null) {
+                ingredientsSelectedValue = new ArrayList<>();
+            }
+
+            ingredientsSelectedValue.add(newIngredient);
+
+            ingredientsSelected.setValue(ingredientsSelectedValue);
+        }
 
         addIngredientDialog.dismiss();
     }
