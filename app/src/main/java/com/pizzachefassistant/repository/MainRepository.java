@@ -149,57 +149,6 @@ public class MainRepository {
                 );
 
                 mainDatabase.pizzaIngredientDao().insertAll(pizzaIngredientsToDB);
-
-
-
-//                mainDatabase.pizzaIngredientDao().insertPizzaWithIngredients(pizza, pizzaIngredients);
-//                int pizzaId = (int) mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
-//
-//                mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients);
-//
-//                Completable insertPizzaCompletable = Completable.fromAction(() -> mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza));
-//                Completable insertPizzaIngredientsCompletable = Completable.fromAction(() -> mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients));
-
-//                Observable.fromCallable(new Callable<Object>() {
-//                    @Override
-//                    public Object call() throws Exception {
-//                        return mainDatabase.pizzaIngredientDao().insertPizzaTransact(pizza);
-//                    }
-//                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Object>() {
-//                    @Override
-//                    public void accept(@NonNull Object o) throws Exception {
-//                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = ((Long) o).intValue());
-//                        Log.i("repo KURWA MAC ", Long.toString(((Long) o).intValue()));
-//                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> Log.i("repo KURWA MAC CHUJ ",
-//                                Integer.toString(pizzaIngredient.pizzaID_FK) + " " +
-//                                Integer.toString(pizzaIngredient.ingredientID_FK) + " " +
-//                                Integer.toString(pizzaIngredient.neededAmount)
-//                                ));
-//                        // the o will be Long[].size => numbers of inserted records.
-//                        Thread t = new Thread(new Runnable() {
-//                            @Override
-//                            public void run() {
-////                                try {
-////                                TimeUnit.SECONDS.sleep(10);
-////                                }
-////                                catch(InterruptedException ex)
-////                                {
-////                                    Thread.currentThread().interrupt();
-////                                }
-//                                mainDatabase.pizzaIngredientDao().insertPizzaIngredientsTransact(pizzaIngredients);}
-//                            });
-//                        t.start();
-//
-//                    }
-//                });
-
-//                insertPizzaCompletable.subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribe(new DisposableMaybeObserver() {
-//
-//                        }
-//                        .andThen(pizzaId -> StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> pizzaIngredient.pizzaID_FK = pizzaId);)
-//                        .andThen(insertPizzaIngredientsCompletable);
             }
         });
         t.start();
