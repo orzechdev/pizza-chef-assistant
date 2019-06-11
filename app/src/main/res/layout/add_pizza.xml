@@ -126,6 +126,7 @@
             android:layout_marginTop="32dp"
             app:setupListViewImages="@{viewModel.ingredientsIcons}"
             app:setupListView="@{viewModel.ingredientsSelected}"
+            app:setupListViewAmounts="@{viewModel.ingredientsSelectedAmounts}"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
             tools:layout_editor_absoluteX="278dp" />
 

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -12,10 +13,12 @@ import com.pizzachefassistant.App;
 import com.pizzachefassistant.repository.MainRepository;
 import com.pizzachefassistant.repository.model.Ingredient;
 import com.pizzachefassistant.repository.model.Pizza;
+import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.List;
 import java.util.Map;
 
+import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 
 public class PizzaViewModel extends AndroidViewModel {
@@ -32,6 +35,8 @@ public class PizzaViewModel extends AndroidViewModel {
     public LiveData<List<Ingredient>> ingredients;
     public Map<String, Integer> ingredientsIcons;
     public String[] ingredientsArray;
+    public LiveData<List<PizzaIngredient>> pizzaIngredients;
+    public LiveData<List<Integer>> ingredientsAmounts;
 
     public PizzaViewModel(@NonNull Application application) {
         super(application);
@@ -45,6 +50,7 @@ public class PizzaViewModel extends AndroidViewModel {
         pizzasImages = mainRepository.getPizzaImages(appContext);
 
         pizzaImage = new MutableLiveData<>();
+        ingredientsAmounts = new MutableLiveData<>();
 
         if (requiredPizzaId != -1) {
             pizza = mainRepository.getPizza(requiredPizzaId);
@@ -56,6 +62,12 @@ public class PizzaViewModel extends AndroidViewModel {
             });
 
             ingredients = mainRepository.getIngredientListByPizzaId(requiredPizzaId);
+
+            pizzaIngredients = mainRepository.getPizzaIngredientListByPizzaId(requiredPizzaId);
+
+            ingredientsAmounts = Transformations.map(pizzaIngredients, pizzaIngredientsVals -> {
+                return StreamSupport.stream(pizzaIngredientsVals).map(pizzaIngredient -> pizzaIngredient.neededAmount).collect(Collectors.toList());
+            });
         }
 
         ingredients = mainRepository.getIngredientList();
@@ -84,5 +96,11 @@ public class PizzaViewModel extends AndroidViewModel {
         });
 
         ingredients = mainRepository.getIngredientListByPizzaId(requiredPizzaId);
+
+        pizzaIngredients = mainRepository.getPizzaIngredientListByPizzaId(requiredPizzaId);
+
+        ingredientsAmounts = Transformations.map(pizzaIngredients, pizzaIngredientsVals -> {
+            return StreamSupport.stream(pizzaIngredientsVals).map(pizzaIngredient -> pizzaIngredient.neededAmount).collect(Collectors.toList());
+        });
     }
 }

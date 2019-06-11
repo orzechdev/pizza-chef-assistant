@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.databinding.AddPizzaBinding;
 import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.repository.model.PizzaIngredient;
 import com.pizzachefassistant.ui.pizza.PizzaIngredientsAdapter;
 import com.pizzachefassistant.ui.pizzaAdd.PizzaAddViewModel;
 
@@ -43,10 +44,10 @@ public class PizzaAddActivity extends AppCompatActivity {
     }
 
 
-    @BindingAdapter({"setupListView", "setupListViewImages"})
-    public static void setupListView(final ListView view, List<Ingredient> data, Map<String, Integer> dataImages) {
-        if (data != null && dataImages != null) {
-            PizzaIngredientsAdapter adapter = new PizzaIngredientsAdapter(view.getContext(), data, dataImages);
+    @BindingAdapter({"setupListView", "setupListViewImages", "setupListViewAmounts"})
+    public static void setupListView(final ListView view, List<Ingredient> ingredients, Map<String, Integer> ingredientsImages, List<Integer> ingredientsAmounts) {
+        if (ingredients != null && ingredientsImages != null && ingredientsAmounts != null) {
+            PizzaIngredientsAdapter adapter = new PizzaIngredientsAdapter(view.getContext(), ingredients, ingredientsImages, ingredientsAmounts);
             view.setAdapter(adapter);
         }
     }

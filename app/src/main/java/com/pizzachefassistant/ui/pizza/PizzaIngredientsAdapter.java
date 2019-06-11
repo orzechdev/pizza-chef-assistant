@@ -11,20 +11,25 @@ import android.widget.BaseAdapter;
 import com.pizzachefassistant.R;
 import com.pizzachefassistant.databinding.PizzaItemIngredientBinding;
 import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.repository.model.PizzaIngredient;
 
 import java.util.List;
 import java.util.Map;
+
+import java8.util.stream.StreamSupport;
 
 public class PizzaIngredientsAdapter extends BaseAdapter {
 
     public List<Ingredient> ingredients;
     public Map<String, Integer> ingredientsIcons;
+    public List<Integer> ingredientsAmounts;
     private Context context;
 
-    public PizzaIngredientsAdapter(Context context, List<Ingredient> ingredients, Map<String, Integer> ingredientsIcons){
+    public PizzaIngredientsAdapter(Context context, List<Ingredient> ingredients, Map<String, Integer> ingredientsIcons, List<Integer> ingredientsAmounts){
         this.context = context;
         this.ingredients = ingredients;
         this.ingredientsIcons = ingredientsIcons;
+        this.ingredientsAmounts = ingredientsAmounts;
     }
 
     @Override
@@ -54,8 +59,10 @@ public class PizzaIngredientsAdapter extends BaseAdapter {
         }
         Ingredient ingredient = ingredients.get(position);
         Integer ingredientIcon = ingredientsIcons.get(ingredient.picRef);
+        Integer ingredientAmount = ingredientsAmounts.get(position);
         binding.setIngredient(ingredient);
         binding.setIngredientIcon(ingredientIcon);
+        binding.setIngredientAmount(ingredientAmount);
         return binding.getRoot();
     }
 }

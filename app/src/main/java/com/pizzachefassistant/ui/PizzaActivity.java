@@ -14,6 +14,7 @@ import com.pizzachefassistant.R;
 import com.pizzachefassistant.constants.IntentsConstants;
 import com.pizzachefassistant.databinding.PizzaItemBinding;
 import com.pizzachefassistant.repository.model.Ingredient;
+import com.pizzachefassistant.repository.model.PizzaIngredient;
 import com.pizzachefassistant.ui.pizza.PizzaIngredientsAdapter;
 import com.pizzachefassistant.ui.pizza.PizzaViewModel;
 
@@ -46,10 +47,10 @@ public class PizzaActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
     }
 
-    @BindingAdapter({"setupListView", "setupListViewImages"})
-    public static void setupRecyclerView(final ListView view, List<Ingredient> data, Map<String, Integer> dataImages) {
-        if (data != null && dataImages != null) {
-            PizzaIngredientsAdapter adapter = new PizzaIngredientsAdapter(view.getContext(), data, dataImages);
+    @BindingAdapter({"setupListView", "setupListViewImages", "setupListViewAmounts"})
+    public static void setupRecyclerView(final ListView view, List<Ingredient> ingredients, Map<String, Integer> ingredientsImages, List<Integer> ingredientsAmounts) {
+        if (ingredients != null && ingredientsImages != null && ingredientsAmounts != null) {
+            PizzaIngredientsAdapter adapter = new PizzaIngredientsAdapter(view.getContext(), ingredients, ingredientsImages, ingredientsAmounts);
             view.setAdapter(adapter);
         }
     }

@@ -49,6 +49,7 @@ public class PizzaAddViewModel extends AndroidViewModel {
 
     public IngredientObservable currentlyAddedIngredientObservable;
     public MutableLiveData<List<Ingredient>> ingredientsSelected;
+    public MutableLiveData<List<Integer>> ingredientsSelectedAmounts;
     public List<IngredientObservable> pizzaIngredientsObservables;
 
     private Dialog addIngredientDialog;
@@ -67,6 +68,8 @@ public class PizzaAddViewModel extends AndroidViewModel {
         Context appContext = ((App)application).getComponent().getContext();
         ingredientsSelected = new MutableLiveData<>();
         ingredientsSelected.setValue(new ArrayList<>());
+        ingredientsSelectedAmounts = new MutableLiveData<>();
+        ingredientsSelectedAmounts.setValue(new ArrayList<>());
         pizzaIngredientsObservables = new ArrayList<>();
 
         ingredients = mainRepository.getIngredientList();
@@ -166,10 +169,16 @@ public class PizzaAddViewModel extends AndroidViewModel {
             if (ingredientsSelectedValue == null) {
                 ingredientsSelectedValue = new ArrayList<>();
             }
+            List<Integer> ingredientsSelectedAmountsValue = ingredientsSelectedAmounts.getValue();
+            if (ingredientsSelectedAmountsValue == null) {
+                ingredientsSelectedAmountsValue = new ArrayList<>();
+            }
 
             ingredientsSelectedValue.add(newIngredient);
+            ingredientsSelectedAmountsValue.add(Integer.parseInt(currentlyAddedIngredientObservable.neededAmount));
 
             ingredientsSelected.setValue(ingredientsSelectedValue);
+            ingredientsSelectedAmounts.setValue(ingredientsSelectedAmountsValue);
         }
 
         addIngredientDialog.dismiss();
