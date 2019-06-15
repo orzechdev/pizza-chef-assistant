@@ -23,7 +23,7 @@ public class App extends Application {
 
     private AppComponent component;
 
-    private static final boolean INIT_SAMPLE_DATA = false;//true;
+    private static final boolean INIT_SAMPLE_DATA = true;//false;//true;
 
 //    @Inject
 //    Retrofit retrofit;
@@ -83,13 +83,13 @@ public class App extends Application {
         pizzas.add(new Pizza(32, "Quattro Formagi", "DO something, then something, and once again something...", "pic_carbonara", "20 zł"));
         pizzas.add(new Pizza(33, "Frutti di Mare", "DO something, then something, and once again something...", "pic_frutti", "18 zł"));
         pizzas.add(new Pizza(34, "Napoli", "DO something, then something, and once again something...", "pic_margherita", "16 zł"));
-        orders.add(new Order(43, "ready", "21:23:12",32));
-        orders.add(new Order(44, "ready", "11:23:23",26));
-        orders.add(new Order(45, "ready", "11:26:23",31));
-        orders.add(new Order(46, "ready", "11:23:27",23));
-        orders.add(new Order(47, "ready", "11:26:23",67));
-        orders.add(new Order(48, "ready", "11:29:23",32));
-        orders.add(new Order(49, "ready", "11:33:23",32));
+        orders.add(new Order(43, false, "21:23:12"));
+        orders.add(new Order(44, false, "11:23:23"));
+        orders.add(new Order(45, false, "11:26:23"));
+        orders.add(new Order(46, false, "11:23:27"));
+        orders.add(new Order(47, true, "11:26:23"));
+        orders.add(new Order(48, true, "11:29:23"));
+        orders.add(new Order(49, true, "11:33:23"));
         orderPizzas.add(new OrderPizza(43, 20, 1));
         orderPizzas.add(new OrderPizza(44, 21, 1));
         orderPizzas.add(new OrderPizza(45, 22, 1));

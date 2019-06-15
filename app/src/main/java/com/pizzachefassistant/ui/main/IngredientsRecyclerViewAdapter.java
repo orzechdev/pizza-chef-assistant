@@ -2,7 +2,6 @@ package com.pizzachefassistant.ui.main;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

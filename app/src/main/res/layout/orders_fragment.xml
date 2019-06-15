@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.pizzachefassistant.ui.main.OrdersViewModel"
@@ -17,6 +18,8 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{(viewModel.orders != null)? View.VISIBLE : View.GONE}"
+            app:setupRecyclerView="@{viewModel.orders}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

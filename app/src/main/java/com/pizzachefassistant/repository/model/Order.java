@@ -15,20 +15,17 @@ import java.time.LocalDateTime;
 public class Order {
     @PrimaryKey(autoGenerate = true)
     public int id;
-    public String status;
-    public String time;
-    public float price;
+    public boolean isDone;
+    public String timeToFinish;
 
     @Ignore
-    public Order(String status, String time, float price){
-        this.status = status;
-        this.time = time;
-        this.price = price;
+    public Order(boolean isDone, String timeToFinish){
+        this.isDone = isDone;
+        this.timeToFinish = timeToFinish;
     }
-    public Order(int id, String status, String time, float price){
+    public Order(int id, boolean isDone, String timeToFinish){
         this.id = id;
-        this.status = status;
-        this.time = time;
-        this.price = price;
+        this.isDone = isDone;
+        this.timeToFinish = timeToFinish;
     }
 }
