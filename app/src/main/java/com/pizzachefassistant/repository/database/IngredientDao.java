@@ -25,8 +25,14 @@ public abstract class IngredientDao {
     @Query("SELECT * FROM `Ingredient` WHERE id = :id")
     public abstract LiveData<Ingredient> load(int id);
 
+    @Query("SELECT * FROM `Ingredient` WHERE id = :id")
+    public abstract Ingredient loadNow(int id);
+
     @Query("SELECT * FROM `Ingredient`")
     public abstract LiveData<List<Ingredient>> loadAll();
+
+    @Query("UPDATE `Ingredient` SET amount = :amount WHERE id = :id")
+    public abstract void updateIngredientStockAmount(int id, int amount);
 
     @Update
     public abstract void updateIngredients(Ingredient... ingredients);

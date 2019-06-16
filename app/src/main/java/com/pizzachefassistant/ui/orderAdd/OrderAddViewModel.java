@@ -100,7 +100,7 @@ public class OrderAddViewModel extends AndroidViewModel {
              * TODO: ...
              */
 //            Pizza pizza = pizzas.getValue().get(orderObservable.selectedTypePosition);
-/*
+
             String timeToFinish = orderObservable.timeToFinish;
             String location = orderObservable.location;
 
@@ -111,19 +111,19 @@ public class OrderAddViewModel extends AndroidViewModel {
              */
 //            addPizza(pizzaName, cookingInstruction, price, ingredient, 5);
 //            addPizzaWithIngredients(pizzaName, cookingInstruction, price, ingredient, 5);
-/*
+
             List<OrderPizza> orderPizzas = StreamSupport.stream(orderPizzaObservables).map(orderPizzaObservables -> {
                 return new OrderPizza(
                         pizzaList.get(orderPizzaObservables.selectedTypePosition).id,
-                        Integer.parseInt(orderPizzaObservables.orderAmount)
+                        Integer.parseInt(orderPizzaObservables.neededAmount)
                 );
             }).collect(Collectors.toList());
 
-            mainRepository.addOrderWithPizzas(isDone, timeToFinish, location, orderPizzas);
+            mainRepository.addOrderWithPizzas(false, timeToFinish, location, orderPizzas);
+
 
             Context context = view.getContext();
             closeActivity(context);
-            */
         }
     }
 

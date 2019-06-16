@@ -177,6 +177,46 @@ public class MainRepository {
                 );
 
                 mainDatabase.orderPizzaDao().insertAll(orderPizzasToDB);
+
+                removeIngredientsStockAmountForOrderPizzas(orderPizzas);
+            }
+        });
+        t.start();
+    }
+
+    public void removeIngredientsStockAmountForOrderPizzas(final List<OrderPizza> orderPizzas) {
+        Log.i("repo", "removeIngredientsStockAmountForOrderPizzas");
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                StreamSupport.stream(orderPizzas).forEach(orderPizza -> {
+                    Log.i("repo", "removeIngredientsStockAmountForOrderPizzas orderPizza");
+
+                    List<PizzaIngredient> pizzaIngredients = mainDatabase.pizzaIngredientDao().loadByPizzaIdNow(orderPizza.pizzaID_FK);
+
+                    if (pizzaIngredients != null) {
+                        StreamSupport.stream(pizzaIngredients).forEach(pizzaIngredient -> {
+                            Log.i("repo", "removeIngredientsStockAmountForOrderPizzas orderPizza pizzaIngredient");
+
+                            Ingredient ingredient = mainDatabase.ingredientDao().loadNow(pizzaIngredient.ingredientID_FK);
+
+                            if (ingredient != null) {
+                                int newAmount = ingredient.amount - (pizzaIngredient.neededAmount * orderPizza.orderAmount);
+
+                                Thread t2 = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mainDatabase.ingredientDao().updateIngredientStockAmount(pizzaIngredient.ingredientID_FK, newAmount);
+                                    }
+                                });
+                                t2.start();
+                            }
+
+                        });
+                    }
+                });
             }
         });
         t.start();

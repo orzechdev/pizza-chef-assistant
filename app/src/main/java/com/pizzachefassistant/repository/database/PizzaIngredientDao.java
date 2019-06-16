@@ -32,6 +32,9 @@ public abstract class PizzaIngredientDao {
     @Query("SELECT * FROM `PizzaIngredient` WHERE pizzaID_FK = :pizzaID_FK")
     public abstract LiveData<List<PizzaIngredient>> loadByPizzaId(int pizzaID_FK);
 
+    @Query("SELECT * FROM `PizzaIngredient` WHERE pizzaID_FK = :pizzaID_FK")
+    public abstract List<PizzaIngredient> loadByPizzaIdNow(int pizzaID_FK);
+
     @Query("SELECT * FROM `PizzaIngredient`")
     public abstract LiveData<List<PizzaIngredient>> loadAll();
 
