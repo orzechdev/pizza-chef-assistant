@@ -17,15 +17,18 @@ public class Order {
     public int id;
     public boolean isDone;
     public String timeToFinish;
+    public String location;
 
     @Ignore
-    public Order(boolean isDone, String timeToFinish){
+    public Order(boolean isDone, String timeToFinish, String location){
         this.isDone = isDone;
         this.timeToFinish = timeToFinish;
+        this.location = location;
     }
-    public Order(int id, boolean isDone, String timeToFinish){
+    public Order(int id, boolean isDone, String timeToFinish, String location){
         this.id = id;
         this.isDone = isDone;
         this.timeToFinish = timeToFinish;
+        this.location = location;
     }
 }
