@@ -54,4 +54,6 @@ dependencies {
 //    compile 'net.sourceforge.streamsupport:streamsupport-atomic:1.6.0'
 //    compile 'net.sourceforge.streamsupport:streamsupport-flow:1.6.0'
 //    compile 'net.sourceforge.streamsupport:streamsupport-literal:1.6.0'
+    compile 'com.android.support:appcompat-v7:28.0.0' // where X.X.X version
+
 }

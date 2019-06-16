@@ -116,6 +116,16 @@ public class MainRepository {
         }
     }
 
+    /*public void addOrderWithPizzas(final boolean isDone, final String timeToFinish) {
+        Log.i("repo", "addOrder");
+        List<Order> orderList = mainDatabase.orderDao().loadAll().getValue();
+
+        Order order = new Order(isDone, timeToFinish);
+
+        if (orderList)
+    }*/
+
+
     public void addPizzaWithIngredients(final String name, final String cookingInstruction, final String price, final List<PizzaIngredient> pizzaIngredients) {
         Log.i("repo", "addPizzaWithIngredients");
 
