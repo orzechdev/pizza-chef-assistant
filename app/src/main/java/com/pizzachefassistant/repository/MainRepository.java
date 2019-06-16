@@ -122,32 +122,32 @@ public class MainRepository {
         }
     }
     /*
-    public void addOrder(final boolean isDone, final String timeToFinish, Pizza pizza, final int orderAmount) {
-        Log.i("repo", "addPizza");
-        List<Order> orderList = mainDatabase.orderDao().loadAll().getValue();
+        public void addOrder(final boolean isDone, final String timeToFinish, final String location, final Pizza pizza, final int orderAmount) {
+            Log.i("repo", "addPizza");
+            List<Order> orderList = mainDatabase.orderDao().loadAll().getValue();
 
-        Order order = new Order(isDone, timeToFinish, pizza, orderAmount);
+            Order order = new Order(isDone, timeToFinish, location, pizza, orderAmount);
 
-        if (orderList == null || orderList.size() == 0) {
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    int orderID = (int) mainDatabase.orderDao().insert(order);
+            if (orderList == null || orderList.size() == 0) {
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int orderID = (int) mainDatabase.orderDao().insert(order);
 
-                    OrderPizza orderPizza = new OrderPizza(orderID, pizza.id, orderAmount);
+                        OrderPizza orderPizza = new OrderPizza(orderID, pizza.id, orderAmount);
 
-                    mainDatabase.orderPizzaDao().insert(orderPizza);
+                        mainDatabase.orderPizzaDao().insert(orderPizza);
 
-                }
-            });
-            t.start();
+                    }
+                });
+                t.start();
+            }
         }
-    }
     */
-    public void addOrderWithPizzas(final boolean isDone, final String timeToFinish, final List<OrderPizza> orderPizzas) {
+    public void addOrderWithPizzas(final boolean isDone, final String timeToFinish, final String location, final List<OrderPizza> orderPizzas) {
         Log.i("repo", "addOrderWithPizzas");
 
-        Order order = new Order(isDone, timeToFinish);
+        Order order = new Order(isDone, timeToFinish, location);
 
         Thread t = new Thread(new Runnable() {
             @Override
