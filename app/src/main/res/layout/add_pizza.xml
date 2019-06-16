@@ -52,7 +52,7 @@
             android:text="Add"
             android:textColor="#FFB300"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_pizza_price" />
+            app:layout_constraintTop_toBottomOf="@+id/currency_spinner" />
 
         <Button
             android:id="@+id/add_ingredient_add_button2"
@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:hint="Price"
             android:text="@={observable.price}"
+            android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +131,23 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
             tools:layout_editor_absoluteX="278dp" />
 
+        <include
+            android:id="@+id/include2"
+            layout="@layout/ingredient_in_pizza_legend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/myListView"
+            app:layout_constraintStart_toStartOf="@+id/myListView" />
+
+        <Spinner
+            android:id="@+id/currency_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Currency"
+            android:entries="@array/currency_array"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_pizza_price"
+            tools:layout_editor_absoluteX="8dp" />
 
     </android.support.constraint.ConstraintLayout>
 

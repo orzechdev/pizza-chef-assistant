@@ -96,11 +96,20 @@
         app:layout_constraintStart_toEndOf="@+id/add_order_minute"
         app:layout_constraintTop_toTopOf="@+id/add_order_minute" />
 
+    <include
+        android:id="@+id/include4"
+        layout="@layout/pizza_in_order_legend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
     <com.pizzachefassistant.ui.utils.MyListView
         android:id="@+id/myListView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/include4"
         tools:layout_editor_absoluteX="8dp" />
 
     <Button
@@ -111,7 +120,7 @@
         android:onClick="onButtonShowPopupWindowClick"
         android:text="Add Pizza"
         android:textColor="#FFB300"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/myListView2"
         tools:layout_editor_absoluteX="16dp" />
 
 </android.support.constraint.ConstraintLayout>

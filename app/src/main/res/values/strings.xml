@@ -6,4 +6,12 @@
     <string name="title_add_to_stock">Add to stock</string>
     <string name="title_add_pizza">Add pizza</string>
     <string name="title_add_order">Add order</string>
+    <string-array name="currency_array">
+        <item>PLN</item>
+        <item>EUR</item>
+        <item>USD</item>
+        <item>GBP</item>
+        <item>AUD</item>
+        <item>CAD</item>
+    </string-array>
 </resources>

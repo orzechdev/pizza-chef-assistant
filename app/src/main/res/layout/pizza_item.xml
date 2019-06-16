@@ -58,11 +58,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ingredient_image_view" />
 
+                <include
+                    android:id="@+id/include2"
+                    layout="@layout/ingredient_in_pizza_legend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"/>
+
                 <com.pizzachefassistant.ui.utils.MyListView
                     android:id="@+id/listViewIngredients"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
                     app:layout_constraintStart_toStartOf="parent"
