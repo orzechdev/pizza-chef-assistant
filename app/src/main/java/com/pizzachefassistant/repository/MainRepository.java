@@ -95,6 +95,12 @@ public class MainRepository {
         return mainDatabase.pizzaDao().load(id);
     }
 
+    public LiveData<Order> getOrder(int id) {
+        return mainDatabase.orderDao().load(id);
+    }
+
+
+
     public void addPizza(final String name, final String cookingInstruction, final String price, final Ingredient ingredient, final int neededAmount) {
         Log.i("repo", "addPizza");
         List<Pizza> pizzaList = mainDatabase.pizzaDao().loadAll().getValue();
@@ -115,15 +121,66 @@ public class MainRepository {
             t.start();
         }
     }
-
-    /*public void addOrderWithPizzas(final boolean isDone, final String timeToFinish) {
-        Log.i("repo", "addOrder");
+    /*
+    public void addOrder(final boolean isDone, final String timeToFinish, Pizza pizza, final int orderAmount) {
+        Log.i("repo", "addPizza");
         List<Order> orderList = mainDatabase.orderDao().loadAll().getValue();
+
+        Order order = new Order(isDone, timeToFinish, pizza, orderAmount);
+
+        if (orderList == null || orderList.size() == 0) {
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int orderID = (int) mainDatabase.orderDao().insert(order);
+
+                    OrderPizza orderPizza = new OrderPizza(orderID, pizza.id, orderAmount);
+
+                    mainDatabase.orderPizzaDao().insert(orderPizza);
+
+                }
+            });
+            t.start();
+        }
+    }
+    */
+    public void addOrderWithPizzas(final boolean isDone, final String timeToFinish, final List<OrderPizza> orderPizzas) {
+        Log.i("repo", "addOrderWithPizzas");
 
         Order order = new Order(isDone, timeToFinish);
 
-        if (orderList)
-    }*/
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                long orderId = mainDatabase.orderDao().insert(order);
+
+                Log.i("repo", "addOrderWithPizzas-1 orderID: " + Long.toString(orderId));
+                StreamSupport.stream(orderPizzas).forEach(orderPizza ->
+                        Log.i("repo", "addOrderWithPizzas-2 pizza: " +
+                                Integer.toString(orderPizza.orderID_FK) + " " +
+                                Integer.toString(orderPizza.pizzaID_FK) + " " +
+                                Integer.toString(orderPizza.orderAmount)
+                        )
+                );
+
+                List<OrderPizza> orderPizzasToDB = StreamSupport.stream(orderPizzas).map(orderPizza ->
+                        new OrderPizza((int) orderId, orderPizza.pizzaID_FK, orderPizza.orderAmount)
+                ).collect(Collectors.toList());
+
+                StreamSupport.stream(orderPizzasToDB).forEach(orderPizza ->
+                        Log.i("repo", "addOrderWithPizzas-3 pizza: " +
+                                Integer.toString(orderPizza.orderID_FK) + " " +
+                                Integer.toString(orderPizza.pizzaID_FK) + " " +
+                                Integer.toString(orderPizza.orderAmount)
+                        )
+                );
+
+                mainDatabase.orderPizzaDao().insertAll(orderPizzasToDB);
+            }
+        });
+        t.start();
+    }
 
 
     public void addPizzaWithIngredients(final String name, final String cookingInstruction, final String price, final List<PizzaIngredient> pizzaIngredients) {

@@ -17,7 +17,7 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public abstract class OrderDao {
     @Insert(onConflict = REPLACE)
-    public abstract void insert(Order order);
+    public abstract long insert(Order order);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public abstract void insertAll(List<Order> orders);
