@@ -137,7 +137,7 @@ public class PizzaAddViewModel extends AndroidViewModel {
 
     private void closeActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("addIngredientClose", true);
+        intent.putExtra("addPizzaClose", true);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }

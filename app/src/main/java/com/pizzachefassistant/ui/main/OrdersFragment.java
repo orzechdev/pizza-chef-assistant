@@ -1,5 +1,6 @@
 package com.pizzachefassistant.ui.main;
 
+import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +46,11 @@ public class OrdersFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @BindingAdapter("setupRecyclerView")
-    public static void setupRecyclerView(final RecyclerView view, List<Order> data) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+    @BindingAdapter({"setupRecyclerView", "passViewModelToRecyclerView"})
+    public static void setupRecyclerView(final RecyclerView view, List<Order> data, OrdersViewModel viewModel) {
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, 1);
         view.setLayoutManager(layoutManager);
-        OrdersRecyclerViewAdapter adapter = new OrdersRecyclerViewAdapter(data);
+        OrdersRecyclerViewAdapter adapter = new OrdersRecyclerViewAdapter(data, viewModel);
         view.setAdapter(adapter);
     }
 }

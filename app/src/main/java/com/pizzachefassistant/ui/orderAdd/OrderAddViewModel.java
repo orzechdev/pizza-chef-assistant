@@ -1,4 +1,3 @@
-/*
 package com.pizzachefassistant.ui.orderAdd;
 
 import android.app.Application;
@@ -29,6 +28,9 @@ import com.pizzachefassistant.repository.model.Order;
 import com.pizzachefassistant.repository.model.OrderPizza;
 import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.repository.model.PizzaIngredient;
+import com.pizzachefassistant.databinding.AddPizzaToOrderBinding;
+import com.pizzachefassistant.repository.MainRepository;
+import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.ui.MainActivity;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 import java8.util.stream.Collectors;
+
 import java8.util.stream.StreamSupport;
 
 public class OrderAddViewModel extends AndroidViewModel {
@@ -79,18 +82,13 @@ public class OrderAddViewModel extends AndroidViewModel {
 //            pizzasArray.clear();
             if (pizzas != null) {
                 String[] pizzasStrings = StreamSupport.stream(pizzas).map(pizza -> pizza.pizzaName).toArray(String[]::new);//.collect(Collectors.toList());
-//                pizzasArray.addAll(pizzasStrings);
+
                 pizzasArray = pizzasStrings;
 
                 currentlyAddedPizzaObservable.setTypes(pizzasArray);
             }
         });
 
-
-    }
-
-    private void addOrder(boolean isDone, String timeToFinish, String location, Pizza pizza, int orderAmount) {
-        mainRepository.addOrder(isDone, timeToFinish, location, pizza, orderAmount);
     }
 
     public void onClickSave(View view) {
@@ -125,9 +123,10 @@ public class OrderAddViewModel extends AndroidViewModel {
 
             Context context = view.getContext();
             closeActivity(context);
+            */
         }
     }
-/*
+
     public void onClickCancel(View view) {
         Log.i(OrderAddViewModel.class.getSimpleName(), "onClickCancel");
 
@@ -137,7 +136,7 @@ public class OrderAddViewModel extends AndroidViewModel {
 
     private void closeActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("addPizzaClose", true);
+        intent.putExtra("addOrderClose", true);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
@@ -154,11 +153,6 @@ public class OrderAddViewModel extends AndroidViewModel {
     }
 
     public void onAddPizzaSaveButtonClick(View view) {
-//        int ingredientType = currentlyAddedIngredientObservable.selectedTypePosition;
-//        int neededAmount = Integer.parseInt(currentlyAddedIngredientObservable.neededAmount);
-//
-//        PizzaIngredient pizzaIngredient = new PizzaIngredient()
-
         List<Pizza> pizzasValue = pizzas.getValue();
         if (pizzasValue != null) {
             orderPizzaObservables.add(currentlyAddedPizzaObservable);
@@ -175,7 +169,7 @@ public class OrderAddViewModel extends AndroidViewModel {
             }
 
             pizzasSelectedValue.add(newPizza);
-            pizzasSelectedAmountsValue.add(Integer.parseInt(currentlyAddedPizzaObservable.orderAmount));
+            pizzasSelectedAmountsValue.add(Integer.parseInt(currentlyAddedPizzaObservable.neededAmount));
 
             pizzasSelected.setValue(pizzasSelectedValue);
             pizzasSelectedAmounts.setValue(pizzasSelectedAmountsValue);
@@ -212,24 +206,21 @@ public class OrderAddViewModel extends AndroidViewModel {
 
     }
 
-    //    @InverseBindingMethods({
-//            @InverseBindingMethod(type = AppCompatSpinner.class, attribute = "android:selectedItemPosition"),
-//    })
     public class PizzaObservable extends BaseObservable {
 
-        public String orderAmount = "1";
+        public String neededAmount = "1";
 
         public String[] types = null;
 
         public String type = null;
 
         @Bindable
-        public String getOrderAmount() {
-            return orderAmount;
+        public String getNeededAmount() {
+            return neededAmount;
         }
 
-        public void setOrderAmount(String orderAmount) {
-            this.orderAmount = orderAmount;
+        public void setNeededAmount(String neededAmount) {
+            this.neededAmount = neededAmount;
             notifyPropertyChanged(BR.neededAmount);
         }
 
@@ -292,4 +283,3 @@ public class OrderAddViewModel extends AndroidViewModel {
         }
     }
 }
-*/

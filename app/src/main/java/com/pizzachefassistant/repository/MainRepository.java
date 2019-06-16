@@ -247,6 +247,17 @@ public class MainRepository {
         t.start();
     }
 
+     public void updateOrderStatus(final int orderId, final boolean isDone) {
+         Log.i("repo", "updateOrderStatus");
+         Thread t = new Thread(new Runnable() {
+             @Override
+             public void run() {
+                 mainDatabase.orderDao().updateOrderStatus(orderId, isDone);
+             }
+         });
+         t.start();
+     }
+
     public Map<String, Integer> getIngredientsIcons(Context appContext) {
         Resources resources = appContext.getResources();
 

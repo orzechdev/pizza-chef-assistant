@@ -18,9 +18,11 @@ public class OrdersRecyclerViewAdapter extends RecyclerView.Adapter<OrdersRecycl
 
     private static final String TAG = "OrdersRecyclerViewAd";
     public List<Order> orders;
+    public OrdersViewModel viewModel;
 
-    public OrdersRecyclerViewAdapter(List<Order> orders) {
+    public OrdersRecyclerViewAdapter(List<Order> orders, OrdersViewModel viewModel) {
         this.orders = orders;
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -35,7 +37,7 @@ public class OrdersRecyclerViewAdapter extends RecyclerView.Adapter<OrdersRecycl
     public void onBindViewHolder(@NonNull OrdersRecyclerViewAdapter.ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         final Order order = orders.get(i);
-        viewHolder.bind(order);
+        viewHolder.bind(order, viewModel);
     }
 
 
@@ -55,8 +57,9 @@ public class OrdersRecyclerViewAdapter extends RecyclerView.Adapter<OrdersRecycl
             this.binding = binding;
         }
 
-        public void bind(Object obj) {
+        public void bind(Object obj, OrdersViewModel viewModel) {
             binding.setVariable(BR.obj, obj);
+            binding.setVariable(BR.viewModel, viewModel);
             binding.executePendingBindings();
         }
     }

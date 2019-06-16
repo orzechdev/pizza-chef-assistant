@@ -28,6 +28,9 @@ public abstract class OrderDao {
     @Query("SELECT * FROM `Order`")
     public abstract LiveData<List<Order>> loadAll();
 
+    @Query("UPDATE `Order` SET isDone = :isDone WHERE id = :id")
+    public abstract void updateOrderStatus(int id, boolean isDone);
+
     @Update
     public abstract void updateOrders(Order... orders);
 

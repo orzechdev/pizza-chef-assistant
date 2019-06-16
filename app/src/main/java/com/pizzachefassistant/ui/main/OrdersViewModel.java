@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.pizzachefassistant.App;
 import com.pizzachefassistant.repository.MainRepository;
@@ -41,5 +42,10 @@ public class OrdersViewModel extends AndroidViewModel {
         Intent intent = new Intent(context, OrderAddActivity.class);
         intent.putExtra("isAdd", true);
         context.startActivity(intent);
+    }
+
+    public void onOrderCheckedChanged(Boolean isChecked, int orderId) {
+        Log.i("vm", "onOrderCheckedChanged" + orderId);
+        mainRepository.updateOrderStatus(orderId, isChecked);
     }
 }
