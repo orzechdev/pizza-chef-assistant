@@ -60,7 +60,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="Location" />
+                android:hint="Location"
+                android:text="@={observable.location}" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
