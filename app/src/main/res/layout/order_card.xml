@@ -9,6 +9,9 @@
         <variable
             name="viewModel"
             type="com.pizzachefassistant.ui.main.OrdersViewModel"/>
+        <variable
+            name="setupListView"
+            type="com.pizzachefassistant.ui.bindingAdapters.AppBindingAdapters"/>
         </data>
 
     <LinearLayout
@@ -58,7 +61,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:padding="5dp"
-                android:text="Location for Delivery" />
+                android:text="@{obj.location}" />
 
             <CheckBox
                 android:checked="@{obj.isDone}"

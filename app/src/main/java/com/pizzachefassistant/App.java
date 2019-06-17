@@ -94,6 +94,7 @@ public class App extends Application {
         orderPizzas.add(new OrderPizza(44, 21, 1));
         orderPizzas.add(new OrderPizza(45, 22, 1));
         orderPizzas.add(new OrderPizza(46, 23, 1));
+        orderPizzas.add(new OrderPizza(46, 24, 2));
         orderPizzas.add(new OrderPizza(47, 24, 1));
         pizzaIngredients.add(new PizzaIngredient(22, 12, 1));
         pizzaIngredients.add(new PizzaIngredient(22, 13, 1));

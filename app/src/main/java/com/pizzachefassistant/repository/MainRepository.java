@@ -75,6 +75,10 @@ public class MainRepository {
         return mainDatabase.orderDao().loadAll();
     }
 
+    public LiveData<List<OrderPizza>> getOrderPizzaList() {
+        return mainDatabase.orderPizzaDao().loadAll();
+    }
+
     public LiveData<List<Customer>> getCustomerList() {
         return mainDatabase.customerDao().loadAll();
     }

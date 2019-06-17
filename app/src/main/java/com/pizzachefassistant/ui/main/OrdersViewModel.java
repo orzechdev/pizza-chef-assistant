@@ -12,6 +12,8 @@ import android.widget.CompoundButton;
 import com.pizzachefassistant.App;
 import com.pizzachefassistant.repository.MainRepository;
 import com.pizzachefassistant.repository.model.Order;
+import com.pizzachefassistant.repository.model.OrderPizza;
+import com.pizzachefassistant.repository.model.Pizza;
 import com.pizzachefassistant.ui.OrderAddActivity;
 
 import java.util.List;
@@ -22,6 +24,8 @@ public class OrdersViewModel extends AndroidViewModel {
 
     public LiveData<String> exampleText;
     public LiveData<List<Order>> orders;
+    public LiveData<List<Pizza>> pizzas;
+    public LiveData<List<OrderPizza>> orderPizzas;
 
     public OrdersViewModel(Application application) {
         super(application);
@@ -48,4 +52,7 @@ public class OrdersViewModel extends AndroidViewModel {
         Log.i("vm", "onOrderCheckedChanged" + orderId);
         mainRepository.updateOrderStatus(orderId, isChecked);
     }
+
+    //public void getPizzaName()
+
 }
