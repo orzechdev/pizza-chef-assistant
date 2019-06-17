@@ -34,13 +34,14 @@
                 android:text="Hour"
                 android:textColor="#A0A0A0"
                 android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@+id/add_order_minute"
+                app:layout_constraintStart_toStartOf="@+id/add_order_hour"
                 app:layout_constraintTop_toBottomOf="@+id/add_ingredient_to_pizza_ingredientbutton" />
 
             <Spinner
-                android:id="@+id/add_order_minute"
+                android:id="@+id/add_order_hour"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
+                android:entries="@array/hour"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -52,8 +53,8 @@
                 android:text="Minute"
                 android:textColor="#A0A0A0"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/add_order_hour"
-                app:layout_constraintStart_toStartOf="@+id/add_order_hour" />
+                app:layout_constraintBottom_toTopOf="@+id/add_order_minute"
+                app:layout_constraintStart_toStartOf="@+id/add_order_minute" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/add_order_location"
@@ -107,13 +108,14 @@
                 app:layout_constraintTop_toTopOf="@+id/add_order_cancel_button" />
 
             <Spinner
-                android:id="@+id/add_order_hour"
+                android:id="@+id/add_order_minute"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                app:layout_constraintStart_toEndOf="@+id/add_order_minute"
-                app:layout_constraintTop_toTopOf="@+id/add_order_minute" />
+                android:entries="@array/minute"
+                app:layout_constraintStart_toEndOf="@+id/add_order_hour"
+                app:layout_constraintTop_toTopOf="@+id/add_order_hour" />
 
             <include
                 android:id="@+id/include4"
